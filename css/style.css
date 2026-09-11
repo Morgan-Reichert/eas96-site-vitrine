@@ -441,6 +441,10 @@ button {
 }
 
 @media (max-width: 47.99em) {
+  .announce {
+    font-size: var(--fs-xs);
+  }
+
   .announce__extra {
     display: none;
   }
