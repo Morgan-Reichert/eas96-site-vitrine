@@ -263,7 +263,7 @@ function initReveal() {
 
   document.querySelectorAll(selector).forEach((el) => {
     const siblings = [...el.parentElement.children].filter((child) => child.matches(selector));
-    el.style.setProperty("--reveal-delay", `${Math.min(siblings.indexOf(el), 5) * 90}ms`);
+    el.style.setProperty("--reveal-delay", `${Math.min(siblings.indexOf(el), 5) * 60}ms`);
     el.classList.add("reveal");
     observer.observe(el);
   });
