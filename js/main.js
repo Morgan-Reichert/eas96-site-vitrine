@@ -13,6 +13,8 @@ const CONFIG = {
   // Liens appliqués automatiquement à tous les éléments [data-link="clé"]
   links: {
     discord: "https://discord.gg/hyYrn5gmMf",
+    // Espace candidat et recruteur (adresse Vercel, à changer si un domaine est branché)
+    intranet: "https://eas96-intranet.vercel.app",
     reglement: "#",
     tiktok: "#",
     youtube: "#",

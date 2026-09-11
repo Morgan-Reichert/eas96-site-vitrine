@@ -8,7 +8,7 @@ Site statique en HTML, CSS et JS, sans dépendance ni installation. Il suffit d'
 
 ```
 index.html            Page d'accueil (toutes les sections)
-recrutement.html      Page recrutement : prérequis, module INTRANET, candidature via Discord
+recrutement.html      Page recrutement : prérequis, puis dépôt de la candidature sur l'intranet
 css/variables.css     Thème : couleurs, polices, tailles, espacements
 css/style.css         Mise en page et composants
 js/main.js            Configuration (date, liens) et interactions
@@ -19,7 +19,7 @@ assets/img/           Logos, favicon et photos
 
 Bandeau d'annonce → Hero « Servir · Protéger · Secourir » + compte à rebours → Chiffres clés → 01 Le projet → 02 Notre objectif → 03 Les pôles → 04 Les attendus → 05 Le recrutement → Galerie → FAQ → Appel final → Pied de page
 
-Tous les boutons « Postuler » et « Déposer ma candidature » mènent à `recrutement.html` : prérequis, puis encadré « Module INTRANET — Recrutement en cours de développement », puis procédure de candidature sur Discord. Quand le module INTRANET sera en ligne, mettez à jour la section « La candidature » de cette page.
+Tous les boutons « Postuler » et « Déposer ma candidature » de l'accueil mènent à `recrutement.html` : les prérequis, puis la marche à suivre en trois étapes (rejoindre le Discord, se connecter à l'intranet, déposer et suivre son dossier). Le bouton « Déposer ma candidature » de cette page ouvre l'intranet, dont l'adresse est réglée dans `CONFIG.links.intranet`.
 
 ## Contenus
 
@@ -47,7 +47,7 @@ Le site n'utilise aucun cookie. Les polices Google Fonts et le compteur de membr
 Objet `CONFIG` en haut du fichier :
 
 - `launchDate` : lundi 14 septembre 2026 à 20h00 (heure de Paris). Toutes les dates affichées suivent automatiquement.
-- `links` : Discord (https://discord.gg/hyYrn5gmMf), règlement et réseaux sociaux. Tous les éléments `data-link="…"` récupèrent ces liens.
+- `links` : Discord (https://discord.gg/hyYrn5gmMf), `intranet` (espace candidat et recruteur), règlement et réseaux sociaux. Tous les éléments `data-link="…"` récupèrent ces liens.
 
 ### 2. Éléments encore à fournir
 
