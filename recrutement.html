@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recrutement — EAS 96 Simulation</title>
+  <meta name="description" content="Prérequis et procédure de candidature pour rejoindre EAS 96 Simulation, serveur FiveM RP secours.">
+  <meta name="theme-color" content="#070b24">
+
+  <!-- Aperçu du lien sur Discord / réseaux sociaux (mettre des URL absolues une fois le site en ligne) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EAS 96 Simulation">
+  <meta property="og:title" content="Recrutement — EAS 96 Simulation">
+  <meta property="og:description" content="Prérequis et procédure de candidature pour rejoindre EAS 96 Simulation.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Bandeau d'annonce déjà fermé : masqué dès le chargement
+    try { if (localStorage.getItem("eas96-announce-closed") === "1") document.documentElement.classList.add("announce-closed"); } catch (e) {}
+  </script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- ===================================================================
+       BANDEAU D'ANNONCE
+       =================================================================== -->
+  <div class="announce" data-announce>
+    <div class="container announce__inner">
+      <p class="announce__text">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span data-when="before">Ouverture du serveur <strong data-launch-date-short>lundi 14/09 à 20h00</strong><span class="announce__extra"> · Recrutements ouverts</span></span>
+        <span data-when="after" hidden><strong>Le serveur est ouvert</strong><span class="announce__extra"> · Recrutements ouverts</span></span>
+        <a class="announce__link" href="#candidature">Postuler</a>
+      </p>
+      <button class="announce__close" type="button" data-announce-close aria-label="Fermer l'annonce">×</button>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       EN-TÊTE
+       =================================================================== -->
+  <header class="site-header theme-dark" data-header>
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html" aria-label="EAS 96 Simulation — accueil">
+        <img class="logo__img" src="assets/img/logo-leger-blanc.png" alt="" width="438" height="128">
+      </a>
+
+      <nav class="nav" id="nav" data-nav aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html#principe">Le principe</a></li>
+          <li><a class="nav__link" href="index.html#services">Les services</a></li>
+          <li><a class="nav__link" href="index.html#attendus">Les attendus</a></li>
+          <li><a class="nav__link" href="recrutement.html" aria-current="page">Recrutement</a></li>
+          <li><a class="nav__link" href="index.html#faq">FAQ</a></li>
+        </ul>
+        <div class="nav__actions">
+          <a class="btn btn--outline" href="https://discord.gg/hyYrn5gmMf" data-link="discord">Discord</a>
+          <a class="btn btn--primary" href="#candidature"><span class="live-dot" aria-hidden="true"></span>Postuler<span class="sr-only"> — recrutement ouvert</span></a>
+        </div>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" data-nav-toggle>
+        <span class="sr-only" data-nav-toggle-label>Ouvrir le menu</span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- =================================================================
+         EN-TÊTE DE PAGE
+         ================================================================= -->
+    <section class="page-hero theme-dark texture-grid texture-glow">
+      <div class="container page-hero__content">
+        <p class="eyebrow">Recrutement</p>
+        <h1 class="page-hero__title">Rejoindre EAS 96 Simulation</h1>
+        <p class="page-hero__lead">Vérifiez que vous remplissez les prérequis, puis déposez votre candidature en suivant la procédure sur notre Discord.</p>
+
+        <ol class="page-hero__nav">
+          <li><a href="#prerequis"><span aria-hidden="true">1</span>Les prérequis</a></li>
+          <li><a href="#candidature"><span aria-hidden="true">2</span>La candidature</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         ÉTAPE 1 · LES PRÉREQUIS
+         ================================================================= -->
+    <section class="section" id="prerequis">
+      <div class="container">
+        <header class="section__header" data-number="01">
+          <p class="eyebrow">Étape 1</p>
+          <h2 class="section__title">Les <span class="hl">prérequis</span></h2>
+          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat condimentum velit class aptent taciti.</p>
+        </header>
+
+        <!-- Exemples : âge minimum, micro, disponibilités, connaissance du règlement… -->
+        <ul class="grid grid--3">
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">01</span>
+            <h3 class="requirement__title">Lorem ipsum</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">02</span>
+            <h3 class="requirement__title">Dolor sit amet</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">03</span>
+            <h3 class="requirement__title">Consectetur</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">04</span>
+            <h3 class="requirement__title">Adipiscing elit</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">05</span>
+            <h3 class="requirement__title">Sed do eiusmod</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">06</span>
+            <h3 class="requirement__title">Tempor incididunt</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+        </ul>
+
+        <div class="section__actions">
+          <a class="btn btn--outline btn--lg" href="#candidature">Je remplis les prérequis <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         ÉTAPE 2 · LA CANDIDATURE — module INTRANET + procédure Discord
+         ================================================================= -->
+    <section class="section section--paper texture-dots" id="candidature">
+      <div class="container">
+        <header class="section__header" data-number="02">
+          <p class="eyebrow">Étape 2</p>
+          <h2 class="section__title">La <span class="hl">candidature</span></h2>
+        </header>
+
+        <!-- À mettre à jour quand le module INTRANET sera en ligne -->
+        <div class="notice" role="note">
+          <div class="notice__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="notice__body">
+            <p class="badge">En cours de développement</p>
+            <h3 class="notice__title">Module INTRANET — Recrutement</h3>
+            <p class="notice__text">La partie recrutement du module INTRANET est actuellement en cours de développement.</p>
+            <p class="notice__text"><strong>En attendant son ouverture, le recrutement se déroule sur notre Discord</strong>, en suivant les instructions ci-dessous.</p>
+          </div>
+        </div>
+
+        <ol class="steps steps--3">
+          <li class="step">
+            <span class="step__number" aria-hidden="true">1</span>
+            <h3 class="step__title">Rejoindre le Discord</h3>
+            <p class="step__text">Rejoignez le serveur Discord d'EAS 96 Simulation à l'aide du bouton ci-dessous.</p>
+          </li>
+          <li class="step">
+            <span class="step__number" aria-hidden="true">2</span>
+            <h3 class="step__title">Suivre les instructions</h3>
+            <p class="step__text">Suivez les instructions de recrutement indiquées sur le Discord pour déposer votre candidature.</p>
+          </li>
+          <li class="step">
+            <span class="step__number" aria-hidden="true">3</span>
+            <h3 class="step__title">Attendre la réponse</h3>
+            <p class="step__text">L'équipe de recrutement étudie votre candidature et vous recontacte sur Discord.</p>
+          </li>
+        </ol>
+
+        <div class="section__actions">
+          <a class="btn btn--primary btn--lg" href="https://discord.gg/hyYrn5gmMf" data-link="discord">Rejoindre le Discord</a>
+          <p class="section__note">Lien d'invitation : <a class="text-link" href="https://discord.gg/hyYrn5gmMf" data-link="discord">discord.gg/hyYrn5gmMf</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       PIED DE PAGE
+       =================================================================== -->
+  <footer class="site-footer theme-dark">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="logo logo--footer" href="index.html" aria-label="EAS 96 Simulation — accueil">
+          <img class="logo__img" src="assets/img/logo-complet-blanc.png" alt="" width="640" height="234">
+        </a>
+        <p class="site-footer__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+      </div>
+
+      <nav class="site-footer__col" aria-label="Le serveur">
+        <h2 class="site-footer__title">Le serveur</h2>
+        <ul class="site-footer__list">
+          <li><a href="index.html#principe">Le principe</a></li>
+          <li><a href="index.html#services">Les services</a></li>
+          <li><a href="index.html#attendus">Les attendus</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+        </ul>
+      </nav>
+
+      <nav class="site-footer__col" aria-label="Communauté">
+        <h2 class="site-footer__title">Communauté</h2>
+        <ul class="site-footer__list">
+          <li><a href="https://discord.gg/hyYrn5gmMf" data-link="discord">Discord</a></li>
+          <li><a href="#" data-link="tiktok">TikTok</a></li>
+          <li><a href="#" data-link="youtube">YouTube</a></li>
+          <li><a href="#" data-link="twitch">Twitch</a></li>
+        </ul>
+      </nav>
+
+      <nav class="site-footer__col" aria-label="Informations">
+        <h2 class="site-footer__title">Informations</h2>
+        <ul class="site-footer__list">
+          <li><a href="#" data-link="reglement">Règlement</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container site-footer__bottom">
+      <p>© <span data-year>2026</span> EAS 96 Simulation. Tous droits réservés.</p>
+      <p>Serveur non affilié à Rockstar Games, Take-Two Interactive ou Cfx.re.</p>
+    </div>
+  </footer>
+</body>
+</html>

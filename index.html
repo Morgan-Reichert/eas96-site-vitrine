@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EAS 96 Simulation — Serveur FiveM RP Secours</title>
+  <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Serveur FiveM RP secours — recrutements ouverts.">
+  <meta name="theme-color" content="#070b24">
+
+  <!-- Aperçu du lien sur Discord / réseaux sociaux (mettre des URL absolues une fois le site en ligne) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EAS 96 Simulation">
+  <meta property="og:title" content="EAS 96 Simulation — Serveur FiveM RP Secours">
+  <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Recrutements ouverts.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Bandeau d'annonce déjà fermé : masqué dès le chargement
+    try { if (localStorage.getItem("eas96-announce-closed") === "1") document.documentElement.classList.add("announce-closed"); } catch (e) {}
+  </script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- ===================================================================
+       BANDEAU D'ANNONCE
+       =================================================================== -->
+  <div class="announce" data-announce>
+    <div class="container announce__inner">
+      <p class="announce__text">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span data-when="before">Ouverture du serveur <strong data-launch-date-short>lundi 14/09 à 20h00</strong><span class="announce__extra"> · Recrutements ouverts</span></span>
+        <span data-when="after" hidden><strong>Le serveur est ouvert</strong><span class="announce__extra"> · Recrutements ouverts</span></span>
+        <a class="announce__link" href="recrutement.html">Postuler</a>
+      </p>
+      <button class="announce__close" type="button" data-announce-close aria-label="Fermer l'annonce">×</button>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       EN-TÊTE
+       =================================================================== -->
+  <header class="site-header theme-dark" data-header>
+    <div class="container site-header__inner">
+      <a class="logo" href="#top" aria-label="EAS 96 Simulation — accueil">
+        <img class="logo__img" src="assets/img/logo-leger-blanc.png" alt="" width="438" height="128">
+      </a>
+
+      <nav class="nav" id="nav" data-nav aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#principe">Le principe</a></li>
+          <li><a class="nav__link" href="#services">Les services</a></li>
+          <li><a class="nav__link" href="#attendus">Les attendus</a></li>
+          <li><a class="nav__link" href="#recrutement">Recrutement</a></li>
+          <li><a class="nav__link" href="#faq">FAQ</a></li>
+        </ul>
+        <div class="nav__actions">
+          <a class="btn btn--outline" href="#" data-link="discord">Discord</a>
+          <a class="btn btn--primary" href="recrutement.html"><span class="live-dot" aria-hidden="true"></span>Postuler<span class="sr-only"> — recrutement ouvert</span></a>
+        </div>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" data-nav-toggle>
+        <span class="sr-only" data-nav-toggle-label>Ouvrir le menu</span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- =================================================================
+         HERO — accroche + compte à rebours + appels à l'action
+         ================================================================= -->
+    <section class="hero theme-dark" id="top">
+      <div class="hero__media" aria-hidden="true">
+        <img src="assets/img/hero.jpg" alt="" width="2560" height="1312" fetchpriority="high">
+      </div>
+
+      <div class="container hero__content">
+        <p class="eyebrow">Serveur FiveM · RP Secours</p>
+        <h1 class="hero__title">EAS 96 Simulation</h1>
+        <p class="hero__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+        <div class="countdown" data-countdown>
+          <p class="countdown__label">Ouverture du serveur <span data-launch-date>le lundi 14 septembre à 20h00</span></p>
+          <div class="countdown__timer" role="timer" data-countdown-timer>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="days">00</span><span class="countdown__name">Jours</span></div>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="hours">00</span><span class="countdown__name">Heures</span></div>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="minutes">00</span><span class="countdown__name">Minutes</span></div>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="seconds">00</span><span class="countdown__name">Secondes</span></div>
+          </div>
+          <p class="countdown__done" data-countdown-done hidden>Le serveur est ouvert !</p>
+        </div>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="recrutement.html">Postuler maintenant</a>
+          <a class="btn btn--outline btn--lg" href="#" data-link="discord">Rejoindre le Discord</a>
+        </div>
+        <p class="hero__note">Recrutements ouverts · Lorem ipsum dolor sit amet</p>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CHIFFRES CLÉS
+         ================================================================= -->
+    <section class="stats" aria-label="EAS 96 en chiffres">
+      <div class="container">
+        <div class="stats__panel">
+          <!-- Nombre de membres récupéré en direct depuis l'invitation Discord -->
+          <div class="stats__item" data-discord-item>
+            <p class="stats__value" data-count="" data-discord="members">—</p>
+            <p class="stats__label">Membres sur le Discord</p>
+            <p class="stats__sub"><span class="live-dot" aria-hidden="true"></span><span data-discord="online">—</span>&nbsp;en ligne</p>
+          </div>
+          <div class="stats__item">
+            <p class="stats__value" data-count="4">4</p>
+            <p class="stats__label">Services d'urgence</p>
+          </div>
+          <div class="stats__item">
+            <!-- Chiffre à ajuster -->
+            <p class="stats__value" data-count="50" data-suffix="+">50+</p>
+            <p class="stats__label">Véhicules d'intervention</p>
+          </div>
+          <div class="stats__item">
+            <!-- Chiffre à ajuster -->
+            <p class="stats__value" data-count="100" data-suffix=" %">100 %</p>
+            <p class="stats__label">Simulation RP</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         01 · LE PRINCIPE
+         ================================================================= -->
+    <section class="section" id="principe">
+      <div class="container split">
+        <div class="split__text" data-number="01">
+          <p class="eyebrow">Le principe</p>
+          <h2 class="section__title">Lorem ipsum <span class="hl">dolor sit</span> amet consectetur</h2>
+          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+          <ul class="checklist">
+            <li>Lorem ipsum dolor sit amet, consectetur</li>
+            <li>Duis sagittis ipsum praesent mauris</li>
+            <li>Fusce nec tellus sed augue semper porta</li>
+          </ul>
+        </div>
+        <div class="split__visual">
+          <figure class="split__media">
+            <img src="assets/img/principe.jpg" alt="Le commandant des opérations de secours donne ses consignes à l'équipe" width="1280" height="621" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         02 · NOTRE OBJECTIF
+         ================================================================= -->
+    <section class="section section--paper texture-dots" id="objectif">
+      <div class="container split split--reverse">
+        <div class="split__text" data-number="02">
+          <p class="eyebrow">Notre objectif</p>
+          <h2 class="section__title">Lorem ipsum dolor <span class="hl">sit amet</span></h2>
+          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+          <ul class="points">
+            <li class="point">
+              <h3 class="point__title">Lorem ipsum</h3>
+              <p class="point__text">Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.</p>
+            </li>
+            <li class="point">
+              <h3 class="point__title">Dolor sit amet</h3>
+              <p class="point__text">Curabitur tortor. Pellentesque nibh. Aenean quam in scelerisque.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="split__visual">
+          <figure class="split__media">
+            <img src="assets/img/objectif.jpg" alt="Équipe de sapeurs-pompiers réunie devant un camion au coucher du soleil" width="1024" height="515" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         03 · LES SERVICES — cartes + fiches détaillées (fenêtres plus bas)
+         ================================================================= -->
+    <section class="section" id="services">
+      <div class="container">
+        <header class="section__header" data-number="03">
+          <p class="eyebrow">Les services</p>
+          <h2 class="section__title">Lorem ipsum <span class="hl">dolor</span> sit amet</h2>
+          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec ante sed lacinia urna non tincidunt mattis.</p>
+        </header>
+
+        <!-- Services déduits de vos illustrations : noms et textes à valider -->
+        <div class="grid grid--4">
+          <article class="card card--pompiers">
+            <div class="card__media">
+              <img class="card__img" src="assets/img/service-1.jpg" alt="" width="1280" height="657" loading="lazy">
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+            </div>
+            <div class="card__body">
+              <p class="card__label">Incendie &amp; secours</p>
+              <h3 class="card__title">Sapeurs-pompiers</h3>
+              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
+              <button class="card__link" type="button" data-dialog-open="service-pompiers">Découvrir le service <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+
+          <article class="card card--samu">
+            <div class="card__media">
+              <img class="card__img" src="assets/img/service-2.jpg" alt="" width="1280" height="626" loading="lazy">
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+            </div>
+            <div class="card__body">
+              <p class="card__label">Urgence médicale</p>
+              <h3 class="card__title">SAMU · SMUR</h3>
+              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
+              <button class="card__link" type="button" data-dialog-open="service-samu">Découvrir le service <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+
+          <article class="card card--police">
+            <div class="card__media">
+              <img class="card__img" src="assets/img/service-3.jpg" alt="" width="1024" height="476" loading="lazy">
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+            </div>
+            <div class="card__body">
+              <p class="card__label">Sécurité publique</p>
+              <h3 class="card__title">Forces de l'ordre</h3>
+              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
+              <button class="card__link" type="button" data-dialog-open="service-police">Découvrir le service <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+
+          <article class="card card--securite-civile">
+            <div class="card__media">
+              <img class="card__img" src="assets/img/service-4.jpg" alt="" width="1280" height="685" loading="lazy">
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+            </div>
+            <div class="card__body">
+              <p class="card__label">Moyens aériens</p>
+              <h3 class="card__title">Sécurité civile</h3>
+              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
+              <button class="card__link" type="button" data-dialog-open="service-securite-civile">Découvrir le service <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fiches détaillées des services (ouvertes par « Découvrir le service ») -->
+    <dialog class="modal modal--pompiers" id="service-pompiers" aria-labelledby="service-pompiers-title">
+      <div class="modal__media">
+        <img src="assets/img/service-1.jpg" alt="" width="1280" height="657" loading="lazy">
+        <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
+      </div>
+      <div class="modal__body">
+        <p class="modal__label">Incendie &amp; secours</p>
+        <h3 class="modal__title" id="service-pompiers-title">Sapeurs-pompiers</h3>
+        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <div class="modal__grid">
+          <div>
+            <h4 class="modal__heading">Missions</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+          <div>
+            <h4 class="modal__heading">Grades</h4>
+            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+          </div>
+          <div>
+            <h4 class="modal__heading">Prérequis</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+        </div>
+        <div class="modal__actions">
+          <a class="btn btn--primary" href="recrutement.html">Postuler</a>
+          <button class="btn btn--outline" type="button" data-dialog-close>Fermer</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="modal modal--samu" id="service-samu" aria-labelledby="service-samu-title">
+      <div class="modal__media">
+        <img src="assets/img/service-2.jpg" alt="" width="1280" height="626" loading="lazy">
+        <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
+      </div>
+      <div class="modal__body">
+        <p class="modal__label">Urgence médicale</p>
+        <h3 class="modal__title" id="service-samu-title">SAMU · SMUR</h3>
+        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <div class="modal__grid">
+          <div>
+            <h4 class="modal__heading">Missions</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+          <div>
+            <h4 class="modal__heading">Grades</h4>
+            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+          </div>
+          <div>
+            <h4 class="modal__heading">Prérequis</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+        </div>
+        <div class="modal__actions">
+          <a class="btn btn--primary" href="recrutement.html">Postuler</a>
+          <button class="btn btn--outline" type="button" data-dialog-close>Fermer</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="modal modal--police" id="service-police" aria-labelledby="service-police-title">
+      <div class="modal__media">
+        <img src="assets/img/service-3.jpg" alt="" width="1024" height="476" loading="lazy">
+        <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
+      </div>
+      <div class="modal__body">
+        <p class="modal__label">Sécurité publique</p>
+        <h3 class="modal__title" id="service-police-title">Forces de l'ordre</h3>
+        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <div class="modal__grid">
+          <div>
+            <h4 class="modal__heading">Missions</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+          <div>
+            <h4 class="modal__heading">Grades</h4>
+            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+          </div>
+          <div>
+            <h4 class="modal__heading">Prérequis</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+        </div>
+        <div class="modal__actions">
+          <a class="btn btn--primary" href="recrutement.html">Postuler</a>
+          <button class="btn btn--outline" type="button" data-dialog-close>Fermer</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="modal modal--securite-civile" id="service-securite-civile" aria-labelledby="service-securite-civile-title">
+      <div class="modal__media">
+        <img src="assets/img/service-4.jpg" alt="" width="1280" height="685" loading="lazy">
+        <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
+      </div>
+      <div class="modal__body">
+        <p class="modal__label">Moyens aériens</p>
+        <h3 class="modal__title" id="service-securite-civile-title">Sécurité civile</h3>
+        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <div class="modal__grid">
+          <div>
+            <h4 class="modal__heading">Missions</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+          <div>
+            <h4 class="modal__heading">Grades</h4>
+            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+          </div>
+          <div>
+            <h4 class="modal__heading">Prérequis</h4>
+            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+          </div>
+        </div>
+        <div class="modal__actions">
+          <a class="btn btn--primary" href="recrutement.html">Postuler</a>
+          <button class="btn btn--outline" type="button" data-dialog-close>Fermer</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- =================================================================
+         04 · LES ATTENDUS (section sombre)
+         ================================================================= -->
+    <section class="section theme-dark texture-grid texture-glow" id="attendus">
+      <div class="container">
+        <header class="section__header" data-number="04">
+          <p class="eyebrow">Les attendus</p>
+          <h2 class="section__title">Lorem ipsum dolor <span class="hl">sit amet</span></h2>
+          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat condimentum velit class aptent taciti.</p>
+        </header>
+
+        <ul class="grid grid--3">
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">01</span>
+            <h3 class="requirement__title">Lorem ipsum</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">02</span>
+            <h3 class="requirement__title">Dolor sit amet</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">03</span>
+            <h3 class="requirement__title">Consectetur</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">04</span>
+            <h3 class="requirement__title">Adipiscing elit</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">05</span>
+            <h3 class="requirement__title">Sed do eiusmod</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+          <li class="requirement">
+            <span class="requirement__icon" aria-hidden="true">06</span>
+            <h3 class="requirement__title">Tempor incididunt</h3>
+            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         05 · LE RECRUTEMENT — étapes + accès à la page recrutement
+         ================================================================= -->
+    <section class="section section--paper" id="recrutement">
+      <div class="container">
+        <header class="section__header" data-number="05">
+          <p class="eyebrow">Le recrutement</p>
+          <h2 class="section__title">Lorem ipsum <span class="hl">dolor</span> sit amet</h2>
+          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi ut fringilla suspendisse potenti.</p>
+        </header>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__number" aria-hidden="true">1</span>
+            <h3 class="step__title">Lorem ipsum</h3>
+            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+          <li class="step">
+            <span class="step__number" aria-hidden="true">2</span>
+            <h3 class="step__title">Dolor sit amet</h3>
+            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+          <li class="step">
+            <span class="step__number" aria-hidden="true">3</span>
+            <h3 class="step__title">Consectetur</h3>
+            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+          <li class="step">
+            <span class="step__number" aria-hidden="true">4</span>
+            <h3 class="step__title">Adipiscing elit</h3>
+            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+        </ol>
+
+        <div class="section__actions">
+          <a class="btn btn--primary btn--lg" href="recrutement.html">Déposer ma candidature</a>
+          <p class="section__note">Lorem ipsum dolor sit amet · Réponse sous 48 h</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         GALERIE — filtres + visionneuse plein écran
+         ================================================================= -->
+    <section class="section section--ink theme-dark" id="galerie">
+      <div class="container">
+        <header class="section__header">
+          <p class="eyebrow">Galerie</p>
+          <h2 class="section__title">Lorem ipsum <span class="hl">dolor</span> sit amet</h2>
+        </header>
+
+        <div class="gallery-filters" role="group" aria-label="Filtrer la galerie">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">Tout</button>
+          <button class="filter" type="button" data-filter="pompiers" aria-pressed="false">Sapeurs-pompiers</button>
+          <button class="filter" type="button" data-filter="samu" aria-pressed="false">SAMU · SMUR</button>
+          <button class="filter" type="button" data-filter="police" aria-pressed="false">Forces de l'ordre</button>
+          <button class="filter" type="button" data-filter="securite-civile" aria-pressed="false">Sécurité civile</button>
+        </div>
+
+        <div class="gallery" data-gallery data-active="all">
+          <figure class="gallery__item" data-category="securite-civile">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-1.jpg" alt="Hélitreuillage d'une victime sur brancard" width="1280" height="584" loading="lazy"></button>
+            <figcaption class="gallery__caption">Hélitreuillage avec brancardage</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="pompiers">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-2.jpg" alt="Intervention des pompiers avec échelle aérienne" width="1280" height="517" loading="lazy"></button>
+            <figcaption class="gallery__caption">Intervention avec échelle aérienne</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="police">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-3.jpg" alt="Interpellation devant une maison" width="1280" height="671" loading="lazy"></button>
+            <figcaption class="gallery__caption">Interpellation à domicile</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="samu">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-4.jpg" alt="Équipes VSAV et SMUR autour d'une ambulance de nuit" width="1280" height="611" loading="lazy"></button>
+            <figcaption class="gallery__caption">Prise en charge VSAV et SMUR</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="pompiers">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-5.jpg" alt="Colonne de camions feux de forêt sur une piste de nuit" width="1280" height="603" loading="lazy"></button>
+            <figcaption class="gallery__caption">Colonne feux de forêt</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="pompiers">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-6.jpg" alt="Tracteur en feu et engin pompe" width="1280" height="622" loading="lazy"></button>
+            <figcaption class="gallery__caption">Feu de véhicule agricole</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="police">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-7.jpg" alt="Véhicule de police gyrophares allumés de nuit" width="1024" height="490" loading="lazy"></button>
+            <figcaption class="gallery__caption">Patrouille de nuit</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="securite-civile">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-8.jpg" alt="Hélicoptère posé sur l'héliport au coucher du soleil" width="1024" height="441" loading="lazy"></button>
+            <figcaption class="gallery__caption">Héliport au crépuscule</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="pompiers">
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-9.jpg" alt="VSAV stationné en ville, gyrophares allumés" width="1280" height="657" loading="lazy"></button>
+            <figcaption class="gallery__caption">VSAV en intervention urbaine</figcaption>
+          </figure>
+        </div>
+
+        <dialog class="lightbox" data-lightbox aria-label="Galerie en plein écran">
+          <button class="lightbox__close" type="button" data-dialog-close aria-label="Fermer">×</button>
+          <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Photo précédente">‹</button>
+          <figure class="lightbox__figure">
+            <img data-lightbox-img alt="">
+            <figcaption class="lightbox__caption"><span data-lightbox-caption></span><span class="lightbox__counter" data-lightbox-counter></span></figcaption>
+          </figure>
+          <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Photo suivante">›</button>
+        </dialog>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         FAQ
+         ================================================================= -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <header class="section__header">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section__title">Questions <span class="hl">fréquentes</span></h2>
+        </header>
+
+        <div class="faq">
+          <details class="faq__item">
+            <summary class="faq__question">Lorem ipsum dolor sit amet, consectetur adipiscing ?</summary>
+            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__question">Sed do eiusmod tempor incididunt ut labore ?</summary>
+            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__question">Ut enim ad minim veniam, quis nostrud ?</summary>
+            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__question">Duis aute irure dolor in reprehenderit ?</summary>
+            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__question">Excepteur sint occaecat cupidatat non proident ?</summary>
+            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         APPEL FINAL
+         ================================================================= -->
+    <section class="cta theme-dark" id="rejoindre">
+      <div class="chevrons" aria-hidden="true"></div>
+      <div class="cta__media" aria-hidden="true">
+        <img src="assets/img/cta.jpg" alt="" width="1280" height="657" loading="lazy">
+      </div>
+
+      <div class="container cta__content">
+        <p class="eyebrow">Rejoindre EAS 96</p>
+        <h2 class="cta__title">Lorem ipsum dolor sit amet ?</h2>
+        <p class="cta__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+
+        <div class="countdown countdown--compact" data-countdown>
+          <p class="countdown__label">Ouverture <span data-launch-date>le lundi 14 septembre à 20h00</span></p>
+          <div class="countdown__timer" role="timer" data-countdown-timer>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="days">00</span><span class="countdown__name">Jours</span></div>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="hours">00</span><span class="countdown__name">Heures</span></div>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="minutes">00</span><span class="countdown__name">Minutes</span></div>
+            <div class="countdown__unit"><span class="countdown__value" data-unit="seconds">00</span><span class="countdown__name">Secondes</span></div>
+          </div>
+          <p class="countdown__done" data-countdown-done hidden>Le serveur est ouvert !</p>
+        </div>
+
+        <div class="cta__actions">
+          <a class="btn btn--primary btn--lg" href="recrutement.html">Déposer ma candidature</a>
+          <a class="btn btn--outline btn--lg" href="#" data-link="discord">Rejoindre le Discord</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       PIED DE PAGE
+       =================================================================== -->
+  <footer class="site-footer theme-dark">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="logo logo--footer" href="#top" aria-label="EAS 96 Simulation — retour en haut">
+          <img class="logo__img" src="assets/img/logo-complet-blanc.png" alt="" width="640" height="234">
+        </a>
+        <p class="site-footer__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+      </div>
+
+      <nav class="site-footer__col" aria-label="Le serveur">
+        <h2 class="site-footer__title">Le serveur</h2>
+        <ul class="site-footer__list">
+          <li><a href="#principe">Le principe</a></li>
+          <li><a href="#services">Les services</a></li>
+          <li><a href="#attendus">Les attendus</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+        </ul>
+      </nav>
+
+      <nav class="site-footer__col" aria-label="Communauté">
+        <h2 class="site-footer__title">Communauté</h2>
+        <ul class="site-footer__list">
+          <li><a href="#" data-link="discord">Discord</a></li>
+          <li><a href="#" data-link="tiktok">TikTok</a></li>
+          <li><a href="#" data-link="youtube">YouTube</a></li>
+          <li><a href="#" data-link="twitch">Twitch</a></li>
+        </ul>
+      </nav>
+
+      <nav class="site-footer__col" aria-label="Informations">
+        <h2 class="site-footer__title">Informations</h2>
+        <ul class="site-footer__list">
+          <li><a href="#" data-link="reglement">Règlement</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container site-footer__bottom">
+      <p>© <span data-year>2026</span> EAS 96 Simulation. Tous droits réservés.</p>
+      <p>Serveur non affilié à Rockstar Games, Take-Two Interactive ou Cfx.re.</p>
+    </div>
+  </footer>
+</body>
+</html>
