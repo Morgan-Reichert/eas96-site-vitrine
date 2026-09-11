@@ -22,6 +22,12 @@ const CONFIG = {
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Polices Google (même adresse que dans le script du <head>), chargées après accord
+const GOOGLE_FONTS_URL = "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap";
+
+// Définie par initStats : récupère les membres Discord une fois l'accord donné
+let loadDiscordCounts = () => {};
+
 /* --------------------------------------------------------------------------
    Liens
    -------------------------------------------------------------------------- */
@@ -309,19 +315,26 @@ function initStats() {
   const members = document.querySelector('[data-discord="members"]');
   if (!members) return;
 
-  const hide = () => members.closest("[data-discord-item]")?.setAttribute("hidden", "");
+  // Masqué tant que le visiteur n'a pas accepté les services tiers (voir initConsent)
+  const item = members.closest("[data-discord-item]");
   const code = (CONFIG.links.discord.match(/discord\.gg\/([\w-]+)/) || [])[1];
-  if (!code) return hide();
+  item?.setAttribute("hidden", "");
 
-  fetch(`https://discord.com/api/v10/invites/${code}?with_counts=true`)
-    .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
-    .then((data) => {
-      members.dataset.count = data.approximate_member_count;
-      const online = document.querySelector('[data-discord="online"]');
-      if (online) online.textContent = number.format(data.approximate_presence_count);
-      watch(members);
-    })
-    .catch(hide);
+  loadDiscordCounts = () => {
+    if (!code || members.dataset.loaded) return;
+    members.dataset.loaded = "true";
+
+    fetch(`https://discord.com/api/v10/invites/${code}?with_counts=true`)
+      .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
+      .then((data) => {
+        members.dataset.count = data.approximate_member_count;
+        const online = document.querySelector('[data-discord="online"]');
+        if (online) online.textContent = number.format(data.approximate_presence_count);
+        item?.removeAttribute("hidden");
+        watch(members);
+      })
+      .catch(() => item?.setAttribute("hidden", ""));
+  };
 }
 
 /* --------------------------------------------------------------------------
@@ -424,6 +437,59 @@ function initHashScroll() {
 }
 
 /* --------------------------------------------------------------------------
+   Bannière de consentement : services tiers (Google Fonts, Discord)
+   -------------------------------------------------------------------------- */
+function initConsent() {
+  const banner = document.querySelector("[data-consent]");
+  const key = "eas96-consent";
+
+  const apply = (choice) => {
+    document.documentElement.dataset.consentState = choice;
+    if (choice !== "accepted") return;
+
+    if (!document.querySelector("link[data-google-fonts]")) {
+      const fonts = document.createElement("link");
+      fonts.rel = "stylesheet";
+      fonts.href = GOOGLE_FONTS_URL;
+      fonts.dataset.googleFonts = "";
+      document.head.append(fonts);
+    }
+    loadDiscordCounts();
+  };
+
+  let stored = null;
+  try {
+    stored = localStorage.getItem(key);
+  } catch (error) {
+    // stockage indisponible : la bannière s'affiche à chaque visite
+  }
+
+  if (stored) apply(stored);
+  else if (banner) banner.hidden = false;
+
+  document.addEventListener("click", (event) => {
+    const choice = event.target.closest("[data-consent-choice]");
+    if (choice) {
+      const value = choice.dataset.consentChoice;
+      try {
+        localStorage.setItem(key, value);
+      } catch (error) {
+        // choix conservé pour cette visite uniquement
+      }
+      apply(value);
+      if (banner) banner.hidden = true;
+      return;
+    }
+
+    if (event.target.closest("[data-consent-open]") && banner) {
+      event.preventDefault();
+      banner.hidden = false;
+      banner.querySelector("[data-consent-choice]")?.focus();
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
    Année du pied de page
    -------------------------------------------------------------------------- */
 function initYear() {
@@ -440,6 +506,7 @@ initScrollSpy();
 initCountdown();
 initReveal();
 initStats();
+initConsent();
 initDialogs();
 initGallery();
 initHashScroll();

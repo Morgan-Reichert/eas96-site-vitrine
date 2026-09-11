@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EAS 96 Simulation — Serveur FiveM RP Secours</title>
-  <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Serveur FiveM RP secours — recrutements ouverts.">
+  <title>EAS 96 — Estuaire d'Armor Simulation · Serveur FiveM de simulation des secours</title>
+  <meta name="description" content="Serveur de simulation FiveM sur GTA V qui reproduit l'action des services de secours français : SAMU, sapeurs-pompiers du SDIS et Police Nationale. Ouverture le 14 septembre 2026.">
   <meta name="theme-color" content="#070b24">
 
-  <!-- Aperçu du lien sur Discord / réseaux sociaux (mettre des URL absolues une fois le site en ligne) -->
+  <!-- Aperçu du lien sur Discord / réseaux sociaux -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="EAS 96 Simulation">
-  <meta property="og:title" content="EAS 96 Simulation — Serveur FiveM RP Secours">
-  <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Recrutements ouverts.">
+  <meta property="og:site_name" content="EAS 96 — Estuaire d'Armor Simulation">
+  <meta property="og:title" content="EAS 96 — Estuaire d'Armor Simulation">
+  <meta property="og:description" content="Servir · Protéger · Secourir. La simulation réaliste des services de secours français sur FiveM. Ouverture le 14 septembre 2026.">
   <meta property="og:url" content="https://morgan-reichert.github.io/eas96-site-vitrine/">
   <meta property="og:image" content="https://morgan-reichert.github.io/eas96-site-vitrine/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/style.css">
   <script>
-    // Bandeau d'annonce déjà fermé : masqué dès le chargement
-    try { if (localStorage.getItem("eas96-announce-closed") === "1") document.documentElement.classList.add("announce-closed"); } catch (e) {}
+    // Préférences mémorisées : bandeau d'annonce fermé, polices Google si l'accord a déjà été donné
+    try {
+      if (localStorage.getItem("eas96-announce-closed") === "1") document.documentElement.classList.add("announce-closed");
+      if (localStorage.getItem("eas96-consent") === "accepted") {
+        var fonts = document.createElement("link");
+        fonts.rel = "stylesheet";
+        fonts.href = "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap";
+        fonts.setAttribute("data-google-fonts", "");
+        document.head.appendChild(fonts);
+      }
+    } catch (e) {}
   </script>
   <script src="js/main.js" defer></script>
 </head>
@@ -51,14 +57,14 @@
        =================================================================== -->
   <header class="site-header theme-dark" data-header>
     <div class="container site-header__inner">
-      <a class="logo" href="#top" aria-label="EAS 96 Simulation — accueil">
+      <a class="logo" href="#top" aria-label="EAS 96 — Estuaire d'Armor Simulation, accueil">
         <img class="logo__img" src="assets/img/logo-leger-blanc.png" alt="" width="438" height="128">
       </a>
 
       <nav class="nav" id="nav" data-nav aria-label="Navigation principale">
         <ul class="nav__list">
-          <li><a class="nav__link" href="#principe">Le principe</a></li>
-          <li><a class="nav__link" href="#services">Les services</a></li>
+          <li><a class="nav__link" href="#projet">Le projet</a></li>
+          <li><a class="nav__link" href="#poles">Les pôles</a></li>
           <li><a class="nav__link" href="#attendus">Les attendus</a></li>
           <li><a class="nav__link" href="#recrutement">Recrutement</a></li>
           <li><a class="nav__link" href="#faq">FAQ</a></li>
@@ -89,9 +95,9 @@
       </div>
 
       <div class="container hero__content">
-        <p class="eyebrow">Serveur FiveM · RP Secours</p>
-        <h1 class="hero__title">EAS 96 Simulation</h1>
-        <p class="hero__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="eyebrow">Servir · Protéger · Secourir</p>
+        <h1 class="hero__title">EAS 96<span class="hero__subtitle">Estuaire d'Armor Simulation</span></h1>
+        <p class="hero__lead">Le serveur de simulation FiveM qui vous fait vivre une prise de garde au sein des services de secours français : SAMU, sapeurs-pompiers du SDIS et Police Nationale.</p>
 
         <div class="countdown" data-countdown>
           <p class="countdown__label">Ouverture du serveur <span data-launch-date>le lundi 14 septembre à 20h00</span></p>
@@ -108,7 +114,7 @@
           <a class="btn btn--primary btn--lg" href="recrutement.html">Postuler maintenant</a>
           <a class="btn btn--outline btn--lg" href="#" data-link="discord">Rejoindre le Discord</a>
         </div>
-        <p class="hero__note">Recrutements ouverts · Lorem ipsum dolor sit amet</p>
+        <p class="hero__note">Projet personnel et gratuit · Recrutements ouverts sur Discord</p>
       </div>
     </section>
 
@@ -126,35 +132,34 @@
           </div>
           <div class="stats__item">
             <p class="stats__value" data-count="4">4</p>
-            <p class="stats__label">Services d'urgence</p>
+            <p class="stats__label">Pôles de secours</p>
           </div>
           <div class="stats__item">
-            <!-- Chiffre à ajuster -->
-            <p class="stats__value" data-count="50" data-suffix="+">50+</p>
-            <p class="stats__label">Véhicules d'intervention</p>
+            <p class="stats__value">3 à 4</p>
+            <p class="stats__label">Sessions par semaine</p>
           </div>
           <div class="stats__item">
-            <!-- Chiffre à ajuster -->
-            <p class="stats__value" data-count="100" data-suffix=" %">100 %</p>
-            <p class="stats__label">Simulation RP</p>
+            <p class="stats__value">21h – 0h</p>
+            <p class="stats__label">Horaires des sessions</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- =================================================================
-         01 · LE PRINCIPE
+         01 · LE PROJET
          ================================================================= -->
-    <section class="section" id="principe">
+    <section class="section" id="projet">
       <div class="container split">
         <div class="split__text" data-number="01">
-          <p class="eyebrow">Le principe</p>
-          <h2 class="section__title">Lorem ipsum <span class="hl">dolor sit</span> amet consectetur</h2>
-          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+          <p class="eyebrow">Le projet</p>
+          <h2 class="section__title">Vivez une <span class="hl">prise de garde</span> au cœur des secours</h2>
+          <p class="section__lead">EAS 96 est un serveur de simulation FiveM sur GTA V. Il reproduit l'action des services de secours français pendant une prise de garde ou une vacation : urgentiste au SAMU, sapeur-pompier au SDIS ou policier de la Police Nationale.</p>
           <ul class="checklist">
-            <li>Lorem ipsum dolor sit amet, consectetur</li>
-            <li>Duis sagittis ipsum praesent mauris</li>
-            <li>Fusce nec tellus sed augue semper porta</li>
+            <li>Un univers fictif : le département inventé du 96, l'Estuaire d'Armor</li>
+            <li>Un territoire avec son port, son pont à haubans et sa citadelle</li>
+            <li>Un projet personnel, non immatriculé et entièrement gratuit</li>
+            <li>Une ouverture du serveur le 14 septembre 2026</li>
           </ul>
         </div>
         <div class="split__visual">
@@ -166,22 +171,26 @@
     </section>
 
     <!-- =================================================================
-         02 · NOTRE OBJECTIF
+         02 · NOTRE OBJECTIF — ce qui fait la différence
          ================================================================= -->
     <section class="section section--paper texture-dots" id="objectif">
       <div class="container split split--reverse">
         <div class="split__text" data-number="02">
           <p class="eyebrow">Notre objectif</p>
-          <h2 class="section__title">Lorem ipsum dolor <span class="hl">sit amet</span></h2>
-          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+          <h2 class="section__title">Faire découvrir les <span class="hl">services de secours</span> français</h2>
+          <p class="section__lead">Notre ambition : faire découvrir les services de secours français à travers une simulation réaliste et poussée. Voici ce qui fait la différence.</p>
           <ul class="points">
             <li class="point">
-              <h3 class="point__title">Lorem ipsum</h3>
-              <p class="point__text">Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.</p>
+              <h3 class="point__title">Une simulation réaliste et précise</h3>
+              <p class="point__text">Une session réussie reste dans la réalité et ne sort jamais du cadre de la simulation.</p>
             </li>
             <li class="point">
-              <h3 class="point__title">Dolor sit amet</h3>
-              <p class="point__text">Curabitur tortor. Pellentesque nibh. Aenean quam in scelerisque.</p>
+              <h3 class="point__title">Des véhicules faits maison</h3>
+              <p class="point__text">Tous les véhicules du serveur ont été réalisés par notre équipe de développement.</p>
+            </li>
+            <li class="point">
+              <h3 class="point__title">Une gestion RH rigoureuse</h3>
+              <p class="point__text">Les candidatures sont suivies par pôle, pour que chacun soit bien informé et bien encadré.</p>
             </li>
           </ul>
         </div>
@@ -194,95 +203,94 @@
     </section>
 
     <!-- =================================================================
-         03 · LES SERVICES — cartes + fiches détaillées (fenêtres plus bas)
+         03 · LES PÔLES — cartes + fiches détaillées (fenêtres plus bas)
          ================================================================= -->
-    <section class="section" id="services">
+    <section class="section" id="poles">
       <div class="container">
         <header class="section__header" data-number="03">
-          <p class="eyebrow">Les services</p>
-          <h2 class="section__title">Lorem ipsum <span class="hl">dolor</span> sit amet</h2>
-          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec ante sed lacinia urna non tincidunt mattis.</p>
+          <p class="eyebrow">Les pôles</p>
+          <h2 class="section__title">Quatre pôles, <span class="hl">une seule chaîne</span> des secours</h2>
+          <p class="section__lead">Chaque pôle fonctionne de façon indépendante. Ensemble, ils travaillent pour assurer la continuité de la chaîne des secours.</p>
         </header>
 
-        <!-- Services déduits de vos illustrations : noms et textes à valider -->
         <div class="grid grid--4">
           <article class="card card--pompiers">
             <div class="card__media">
               <img class="card__img" src="assets/img/service-1.jpg" alt="" width="1280" height="657" loading="lazy">
-              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Candidatures ouvertes</p>
             </div>
             <div class="card__body">
-              <p class="card__label">Incendie &amp; secours</p>
-              <h3 class="card__title">Sapeurs-pompiers</h3>
-              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
-              <button class="card__link" type="button" data-dialog-open="service-pompiers">Découvrir le service <span aria-hidden="true">→</span></button>
+              <p class="card__label">Sapeurs-pompiers</p>
+              <h3 class="card__title">SDIS 96</h3>
+              <p class="card__text">Les sapeurs-pompiers du service départemental d'incendie et de secours de l'Estuaire d'Armor.</p>
+              <button class="card__link" type="button" data-dialog-open="pole-sdis">Découvrir le pôle <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
           <article class="card card--samu">
             <div class="card__media">
               <img class="card__img" src="assets/img/service-2.jpg" alt="" width="1280" height="626" loading="lazy">
-              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Candidatures ouvertes</p>
             </div>
             <div class="card__body">
-              <p class="card__label">Urgence médicale</p>
-              <h3 class="card__title">SAMU · SMUR</h3>
-              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
-              <button class="card__link" type="button" data-dialog-open="service-samu">Découvrir le service <span aria-hidden="true">→</span></button>
+              <p class="card__label">Urgentistes</p>
+              <h3 class="card__title">SAMU · CHU Montreval</h3>
+              <p class="card__text">Les urgentistes du SAMU, rattachés au CHU Montreval.</p>
+              <button class="card__link" type="button" data-dialog-open="pole-samu">Découvrir le pôle <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
           <article class="card card--police">
             <div class="card__media">
               <img class="card__img" src="assets/img/service-3.jpg" alt="" width="1024" height="476" loading="lazy">
-              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Candidatures ouvertes</p>
             </div>
             <div class="card__body">
-              <p class="card__label">Sécurité publique</p>
-              <h3 class="card__title">Forces de l'ordre</h3>
-              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
-              <button class="card__link" type="button" data-dialog-open="service-police">Découvrir le service <span aria-hidden="true">→</span></button>
+              <p class="card__label">Policiers</p>
+              <h3 class="card__title">Police Nationale</h3>
+              <p class="card__text">Les policiers de la DIDPN Estuaire d'Armor, la direction interdépartementale de la Police Nationale.</p>
+              <button class="card__link" type="button" data-dialog-open="pole-police">Découvrir le pôle <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
-          <article class="card card--securite-civile">
+          <article class="card card--radio">
             <div class="card__media">
-              <img class="card__img" src="assets/img/service-4.jpg" alt="" width="1280" height="685" loading="lazy">
-              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Recrute · XX places</p>
+              <img class="card__img" src="assets/img/service-4.jpg" alt="" width="1280" height="657" loading="lazy">
+              <p class="card__tag"><span class="live-dot" aria-hidden="true"></span>Candidatures ouvertes</p>
             </div>
             <div class="card__body">
-              <p class="card__label">Moyens aériens</p>
-              <h3 class="card__title">Sécurité civile</h3>
-              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi nulla quis sem.</p>
-              <button class="card__link" type="button" data-dialog-open="service-securite-civile">Découvrir le service <span aria-hidden="true">→</span></button>
+              <p class="card__label">Opérateurs radio</p>
+              <h3 class="card__title">Centre de traitement des appels</h3>
+              <p class="card__text">Les opérateurs radio qui assurent le traitement des appels. Un simple PC suffit pour tenir le poste.</p>
+              <button class="card__link" type="button" data-dialog-open="pole-radio">Découvrir le pôle <span aria-hidden="true">→</span></button>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Fiches détaillées des services (ouvertes par « Découvrir le service ») -->
-    <dialog class="modal modal--pompiers" id="service-pompiers" aria-labelledby="service-pompiers-title">
+    <!-- Fiches détaillées des pôles (ouvertes par « Découvrir le pôle ») -->
+    <dialog class="modal modal--pompiers" id="pole-sdis" aria-labelledby="pole-sdis-title">
       <div class="modal__media">
         <img src="assets/img/service-1.jpg" alt="" width="1280" height="657" loading="lazy">
         <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
       </div>
       <div class="modal__body">
-        <p class="modal__label">Incendie &amp; secours</p>
-        <h3 class="modal__title" id="service-pompiers-title">Sapeurs-pompiers</h3>
-        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <p class="modal__label">Sapeurs-pompiers</p>
+        <h3 class="modal__title" id="pole-sdis-title">SDIS 96</h3>
+        <p class="modal__lead">Prenez votre garde en tant que sapeur-pompier du SDIS 96 et participez à la chaîne des secours de l'Estuaire d'Armor.</p>
         <div class="modal__grid">
           <div>
-            <h4 class="modal__heading">Missions</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Le pôle</h4>
+            <ul class="modal__list"><li>Fonctionne de façon indépendante</li><li>Travaille avec les autres pôles pour assurer la continuité des secours</li><li>Des véhicules entièrement réalisés par l'équipe</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Grades</h4>
-            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+            <h4 class="modal__heading">La formation</h4>
+            <ul class="modal__list"><li>Une formation initiale propre au pôle</li><li>Aucune expérience réelle demandée</li><li>Toutes les connaissances apportées par l'équipe</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Prérequis</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Pour postuler</h4>
+            <ul class="modal__list"><li>17 ans minimum, sans dérogation</li><li>Un PC qui fait tourner GTA V</li><li>Une candidature suivie par le pôle</li></ul>
           </div>
         </div>
         <div class="modal__actions">
@@ -292,27 +300,27 @@
       </div>
     </dialog>
 
-    <dialog class="modal modal--samu" id="service-samu" aria-labelledby="service-samu-title">
+    <dialog class="modal modal--samu" id="pole-samu" aria-labelledby="pole-samu-title">
       <div class="modal__media">
         <img src="assets/img/service-2.jpg" alt="" width="1280" height="626" loading="lazy">
         <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
       </div>
       <div class="modal__body">
-        <p class="modal__label">Urgence médicale</p>
-        <h3 class="modal__title" id="service-samu-title">SAMU · SMUR</h3>
-        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <p class="modal__label">Urgentistes</p>
+        <h3 class="modal__title" id="pole-samu-title">SAMU · CHU Montreval</h3>
+        <p class="modal__lead">Prenez votre garde en tant qu'urgentiste du SAMU, rattaché au CHU Montreval, au sein de la chaîne des secours de l'Estuaire d'Armor.</p>
         <div class="modal__grid">
           <div>
-            <h4 class="modal__heading">Missions</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Le pôle</h4>
+            <ul class="modal__list"><li>Fonctionne de façon indépendante</li><li>Travaille avec les autres pôles pour assurer la continuité des secours</li><li>Des véhicules entièrement réalisés par l'équipe</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Grades</h4>
-            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+            <h4 class="modal__heading">La formation</h4>
+            <ul class="modal__list"><li>Une formation initiale propre au pôle</li><li>Aucune expérience réelle demandée</li><li>Toutes les connaissances apportées par l'équipe</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Prérequis</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Pour postuler</h4>
+            <ul class="modal__list"><li>17 ans minimum, sans dérogation</li><li>Un PC qui fait tourner GTA V</li><li>Une candidature suivie par le pôle</li></ul>
           </div>
         </div>
         <div class="modal__actions">
@@ -322,27 +330,27 @@
       </div>
     </dialog>
 
-    <dialog class="modal modal--police" id="service-police" aria-labelledby="service-police-title">
+    <dialog class="modal modal--police" id="pole-police" aria-labelledby="pole-police-title">
       <div class="modal__media">
         <img src="assets/img/service-3.jpg" alt="" width="1024" height="476" loading="lazy">
         <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
       </div>
       <div class="modal__body">
-        <p class="modal__label">Sécurité publique</p>
-        <h3 class="modal__title" id="service-police-title">Forces de l'ordre</h3>
-        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <p class="modal__label">Policiers</p>
+        <h3 class="modal__title" id="pole-police-title">Police Nationale</h3>
+        <p class="modal__lead">Prenez votre vacation en tant que policier de la DIDPN Estuaire d'Armor, en lien avec les autres pôles de secours.</p>
         <div class="modal__grid">
           <div>
-            <h4 class="modal__heading">Missions</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Le pôle</h4>
+            <ul class="modal__list"><li>Fonctionne de façon indépendante</li><li>Travaille avec les autres pôles pour assurer la continuité des secours</li><li>Des véhicules entièrement réalisés par l'équipe</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Grades</h4>
-            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+            <h4 class="modal__heading">La formation</h4>
+            <ul class="modal__list"><li>Une formation initiale propre au pôle</li><li>Aucune expérience réelle demandée</li><li>Toutes les connaissances apportées par l'équipe</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Prérequis</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Pour postuler</h4>
+            <ul class="modal__list"><li>17 ans minimum, sans dérogation</li><li>Un PC qui fait tourner GTA V</li><li>Une candidature suivie par le pôle</li></ul>
           </div>
         </div>
         <div class="modal__actions">
@@ -352,27 +360,27 @@
       </div>
     </dialog>
 
-    <dialog class="modal modal--securite-civile" id="service-securite-civile" aria-labelledby="service-securite-civile-title">
+    <dialog class="modal modal--radio" id="pole-radio" aria-labelledby="pole-radio-title">
       <div class="modal__media">
-        <img src="assets/img/service-4.jpg" alt="" width="1280" height="685" loading="lazy">
+        <img src="assets/img/service-4.jpg" alt="" width="1280" height="657" loading="lazy">
         <button class="modal__close" type="button" data-dialog-close aria-label="Fermer">×</button>
       </div>
       <div class="modal__body">
-        <p class="modal__label">Moyens aériens</p>
-        <h3 class="modal__title" id="service-securite-civile-title">Sécurité civile</h3>
-        <p class="modal__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero.</p>
+        <p class="modal__label">Opérateurs radio</p>
+        <h3 class="modal__title" id="pole-radio-title">Centre de traitement des appels</h3>
+        <p class="modal__lead">Tenez un poste d'opérateur radio au centre de traitement des appels, un maillon essentiel de la chaîne des secours.</p>
         <div class="modal__grid">
           <div>
-            <h4 class="modal__heading">Missions</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Le pôle</h4>
+            <ul class="modal__list"><li>Fonctionne de façon indépendante</li><li>Travaille avec les autres pôles pour assurer la continuité des secours</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Grades</h4>
-            <ol class="modal__grades"><li>Lorem ipsum</li><li>Dolor sit</li><li>Amet elit</li><li>Consectetur</li></ol>
+            <h4 class="modal__heading">La formation</h4>
+            <ul class="modal__list"><li>Une formation initiale propre au pôle</li><li>Aucune expérience réelle demandée</li><li>Toutes les connaissances apportées par l'équipe</li></ul>
           </div>
           <div>
-            <h4 class="modal__heading">Prérequis</h4>
-            <ul class="modal__list"><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Sed do eiusmod tempor</li></ul>
+            <h4 class="modal__heading">Pour postuler</h4>
+            <ul class="modal__list"><li>17 ans minimum, sans dérogation</li><li>Un simple PC suffit</li><li>Une candidature suivie par le pôle</li></ul>
           </div>
         </div>
         <div class="modal__actions">
@@ -389,40 +397,40 @@
       <div class="container">
         <header class="section__header" data-number="04">
           <p class="eyebrow">Les attendus</p>
-          <h2 class="section__title">Lorem ipsum dolor <span class="hl">sit amet</span></h2>
-          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat condimentum velit class aptent taciti.</p>
+          <h2 class="section__title">Ce que nous <span class="hl">attendons</span> de vous</h2>
+          <p class="section__lead">EAS 96 s'adresse aux joueurs qui cherchent une vraie simulation de secours, et à ceux qui veulent évoluer et prendre des responsabilités.</p>
         </header>
 
         <ul class="grid grid--3">
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">01</span>
-            <h3 class="requirement__title">Lorem ipsum</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">17 ans minimum</h3>
+            <p class="requirement__text">L'âge minimum est fixé à 17 ans, sans aucune dérogation.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">02</span>
-            <h3 class="requirement__title">Dolor sit amet</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Aucune expérience réelle</h3>
+            <p class="requirement__text">Nul besoin d'être du métier : l'équipe vous apporte toutes les connaissances nécessaires.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">03</span>
-            <h3 class="requirement__title">Consectetur</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Une formation initiale</h3>
+            <p class="requirement__text">Chaque pôle assure sa propre formation initiale.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">04</span>
-            <h3 class="requirement__title">Adipiscing elit</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Investissement et sérieux</h3>
+            <p class="requirement__text">Les qualités indispensables pour faire vivre une simulation réaliste.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">05</span>
-            <h3 class="requirement__title">Sed do eiusmod</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Sens du roleplay et respect</h3>
+            <p class="requirement__text">Respect des autres joueurs et de la chaîne de commandement.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">06</span>
-            <h3 class="requirement__title">Tempor incididunt</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Le bon matériel</h3>
+            <p class="requirement__text">Un PC qui fait tourner GTA V, ou un simple PC pour un poste d'opérateur radio.</p>
           </li>
         </ul>
       </div>
@@ -435,36 +443,36 @@
       <div class="container">
         <header class="section__header" data-number="05">
           <p class="eyebrow">Le recrutement</p>
-          <h2 class="section__title">Lorem ipsum <span class="hl">dolor</span> sit amet</h2>
-          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi ut fringilla suspendisse potenti.</p>
+          <h2 class="section__title">Rejoindre EAS 96 en <span class="hl">quatre étapes</span></h2>
+          <p class="section__lead">Le recrutement se déroule pour l'instant sur notre Discord. Chaque candidature est suivie par le pôle concerné.</p>
         </header>
 
         <ol class="steps">
           <li class="step">
             <span class="step__number" aria-hidden="true">1</span>
-            <h3 class="step__title">Lorem ipsum</h3>
-            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3 class="step__title">Vérifier les prérequis</h3>
+            <p class="step__text">17 ans minimum et un PC adapté au poste visé.</p>
           </li>
           <li class="step">
             <span class="step__number" aria-hidden="true">2</span>
-            <h3 class="step__title">Dolor sit amet</h3>
-            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3 class="step__title">Rejoindre le Discord</h3>
+            <p class="step__text">Le recrutement se déroule pour l'instant sur le Discord d'EAS 96.</p>
           </li>
           <li class="step">
             <span class="step__number" aria-hidden="true">3</span>
-            <h3 class="step__title">Consectetur</h3>
-            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3 class="step__title">Déposer sa candidature</h3>
+            <p class="step__text">Suivez les instructions : votre candidature est suivie par le pôle choisi.</p>
           </li>
           <li class="step">
             <span class="step__number" aria-hidden="true">4</span>
-            <h3 class="step__title">Adipiscing elit</h3>
-            <p class="step__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3 class="step__title">Suivre la formation</h3>
+            <p class="step__text">Chaque pôle assure la formation initiale de ses nouvelles recrues.</p>
           </li>
         </ol>
 
         <div class="section__actions">
           <a class="btn btn--primary btn--lg" href="recrutement.html">Déposer ma candidature</a>
-          <p class="section__note">Lorem ipsum dolor sit amet · Réponse sous 48 h</p>
+          <p class="section__note">Recrutement sur Discord · Candidatures suivies par pôle</p>
         </div>
       </div>
     </section>
@@ -476,24 +484,23 @@
       <div class="container">
         <header class="section__header">
           <p class="eyebrow">Galerie</p>
-          <h2 class="section__title">Lorem ipsum <span class="hl">dolor</span> sit amet</h2>
+          <h2 class="section__title">Immersion dans <span class="hl">l'Estuaire d'Armor</span></h2>
         </header>
 
         <div class="gallery-filters" role="group" aria-label="Filtrer la galerie">
           <button class="filter" type="button" data-filter="all" aria-pressed="true">Tout</button>
-          <button class="filter" type="button" data-filter="pompiers" aria-pressed="false">Sapeurs-pompiers</button>
-          <button class="filter" type="button" data-filter="samu" aria-pressed="false">SAMU · SMUR</button>
-          <button class="filter" type="button" data-filter="police" aria-pressed="false">Forces de l'ordre</button>
-          <button class="filter" type="button" data-filter="securite-civile" aria-pressed="false">Sécurité civile</button>
+          <button class="filter" type="button" data-filter="pompiers" aria-pressed="false">SDIS 96</button>
+          <button class="filter" type="button" data-filter="samu" aria-pressed="false">SAMU</button>
+          <button class="filter" type="button" data-filter="police" aria-pressed="false">Police Nationale</button>
         </div>
 
         <div class="gallery" data-gallery data-active="all">
-          <figure class="gallery__item" data-category="securite-civile">
+          <figure class="gallery__item" data-category="pompiers">
             <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-1.jpg" alt="Hélitreuillage d'une victime sur brancard" width="1280" height="584" loading="lazy"></button>
             <figcaption class="gallery__caption">Hélitreuillage avec brancardage</figcaption>
           </figure>
           <figure class="gallery__item" data-category="pompiers">
-            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-2.jpg" alt="Intervention des pompiers avec échelle aérienne" width="1280" height="517" loading="lazy"></button>
+            <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-2.jpg" alt="Intervention des sapeurs-pompiers avec échelle aérienne" width="1280" height="517" loading="lazy"></button>
             <figcaption class="gallery__caption">Intervention avec échelle aérienne</figcaption>
           </figure>
           <figure class="gallery__item" data-category="police">
@@ -516,7 +523,7 @@
             <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-7.jpg" alt="Véhicule de police gyrophares allumés de nuit" width="1024" height="490" loading="lazy"></button>
             <figcaption class="gallery__caption">Patrouille de nuit</figcaption>
           </figure>
-          <figure class="gallery__item" data-category="securite-civile">
+          <figure class="gallery__item" data-category="pompiers">
             <button class="gallery__button" type="button" aria-label="Agrandir la photo"><img src="assets/img/galerie-8.jpg" alt="Hélicoptère posé sur l'héliport au coucher du soleil" width="1024" height="441" loading="lazy"></button>
             <figcaption class="gallery__caption">Héliport au crépuscule</figcaption>
           </figure>
@@ -550,24 +557,32 @@
 
         <div class="faq">
           <details class="faq__item">
-            <summary class="faq__question">Lorem ipsum dolor sit amet, consectetur adipiscing ?</summary>
-            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+            <summary class="faq__question">Qu'est-ce qu'EAS 96 ?</summary>
+            <div class="faq__answer"><p>EAS 96 (Estuaire d'Armor Simulation) est un serveur de simulation FiveM sur GTA V. Il reproduit l'action des services de secours français pendant une prise de garde ou une vacation.</p></div>
           </details>
           <details class="faq__item">
-            <summary class="faq__question">Sed do eiusmod tempor incididunt ut labore ?</summary>
-            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+            <summary class="faq__question">Faut-il payer pour jouer ?</summary>
+            <div class="faq__answer"><p>Non. EAS 96 est un projet personnel, non immatriculé et entièrement gratuit.</p></div>
           </details>
           <details class="faq__item">
-            <summary class="faq__question">Ut enim ad minim veniam, quis nostrud ?</summary>
-            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+            <summary class="faq__question">Quand ont lieu les sessions ?</summary>
+            <div class="faq__answer"><p>Il y a 3 à 4 sessions par semaine, de 21 h à minuit. Le planning n'est pas encore figé.</p></div>
           </details>
           <details class="faq__item">
-            <summary class="faq__question">Duis aute irure dolor in reprehenderit ?</summary>
-            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+            <summary class="faq__question">Faut-il une expérience dans les secours ?</summary>
+            <div class="faq__answer"><p>Non, aucune expérience réelle n'est demandée. L'équipe apporte toutes les connaissances nécessaires, avec une formation initiale propre à chaque pôle.</p></div>
           </details>
           <details class="faq__item">
-            <summary class="faq__question">Excepteur sint occaecat cupidatat non proident ?</summary>
-            <div class="faq__answer"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+            <summary class="faq__question">Quel âge faut-il avoir ?</summary>
+            <div class="faq__answer"><p>L'âge minimum est de 17 ans, sans aucune dérogation.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__question">De quel matériel ai-je besoin ?</summary>
+            <div class="faq__answer"><p>D'un PC qui fait tourner GTA V. Pour tenir un poste d'opérateur radio, un simple PC suffit.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary class="faq__question">L'univers du serveur est-il réel ?</summary>
+            <div class="faq__answer"><p>Non, il est fictif. Tout se passe dans le département inventé du 96, l'Estuaire d'Armor, avec son port, son pont à haubans et sa citadelle.</p></div>
           </details>
         </div>
       </div>
@@ -584,8 +599,8 @@
 
       <div class="container cta__content">
         <p class="eyebrow">Rejoindre EAS 96</p>
-        <h2 class="cta__title">Lorem ipsum dolor sit amet ?</h2>
-        <p class="cta__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+        <h2 class="cta__title">Prêt à prendre votre garde ?</h2>
+        <p class="cta__lead">Le serveur ouvre le 14 septembre 2026. Déposez votre candidature et rejoignez le pôle qui vous correspond.</p>
 
         <div class="countdown countdown--compact" data-countdown>
           <p class="countdown__label">Ouverture <span data-launch-date>le lundi 14 septembre à 20h00</span></p>
@@ -613,17 +628,17 @@
   <footer class="site-footer theme-dark">
     <div class="container site-footer__grid">
       <div class="site-footer__brand">
-        <a class="logo logo--footer" href="#top" aria-label="EAS 96 Simulation — retour en haut">
+        <a class="logo logo--footer" href="#top" aria-label="EAS 96 — Estuaire d'Armor Simulation, retour en haut">
           <img class="logo__img" src="assets/img/logo-complet-blanc.png" alt="" width="640" height="234">
         </a>
-        <p class="site-footer__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+        <p class="site-footer__text">La simulation des services de secours français sur FiveM. Projet personnel, non immatriculé et gratuit.</p>
       </div>
 
       <nav class="site-footer__col" aria-label="Le serveur">
         <h2 class="site-footer__title">Le serveur</h2>
         <ul class="site-footer__list">
-          <li><a href="#principe">Le principe</a></li>
-          <li><a href="#services">Les services</a></li>
+          <li><a href="#projet">Le projet</a></li>
+          <li><a href="#poles">Les pôles</a></li>
           <li><a href="#attendus">Les attendus</a></li>
           <li><a href="recrutement.html">Recrutement</a></li>
         </ul>
@@ -645,14 +660,35 @@
           <li><a href="#" data-link="reglement">Règlement</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#">Mentions légales</a></li>
+          <li><a href="#" data-consent-open>Préférences de confidentialité</a></li>
         </ul>
       </nav>
     </div>
 
     <div class="container site-footer__bottom">
-      <p>© <span data-year>2026</span> EAS 96 Simulation. Tous droits réservés.</p>
-      <p>Serveur non affilié à Rockstar Games, Take-Two Interactive ou Cfx.re.</p>
+      <p>© <span data-year>2026</span> EAS 96 — Estuaire d'Armor Simulation.</p>
+      <p>Univers fictif · Non affilié à Rockstar Games, Take-Two Interactive ou Cfx.re.</p>
     </div>
   </footer>
+
+  <!-- ===================================================================
+       BANNIÈRE DE CONSENTEMENT (première visite, réouvrable depuis le pied de page)
+       =================================================================== -->
+  <div class="consent theme-dark" data-consent role="dialog" aria-labelledby="consent-title" aria-describedby="consent-text" hidden>
+    <p class="consent__title" id="consent-title">Vos préférences de confidentialité</p>
+    <p class="consent__text" id="consent-text">Ce site n'utilise aucun cookie publicitaire ni outil de suivi. Avec votre accord, il fait appel à deux services tiers : Google Fonts pour les polices et Discord pour afficher le nombre de membres.</p>
+    <details class="consent__details">
+      <summary>En savoir plus</summary>
+      <ul>
+        <li><strong>Google Fonts</strong> : chargement des polices du site depuis les serveurs de Google.</li>
+        <li><strong>Discord</strong> : récupération du nombre de membres et de connectés du serveur.</li>
+        <li><strong>Stockage local</strong> : mémorise votre choix dans votre navigateur, sans cookie.</li>
+      </ul>
+    </details>
+    <div class="consent__actions">
+      <button class="btn btn--light" type="button" data-consent-choice="refused">Refuser</button>
+      <button class="btn btn--light" type="button" data-consent-choice="accepted">Accepter</button>
+    </div>
+  </div>
 </body>
 </html>

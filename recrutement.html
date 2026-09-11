@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Recrutement — EAS 96 Simulation</title>
-  <meta name="description" content="Prérequis et procédure de candidature pour rejoindre EAS 96 Simulation, serveur FiveM RP secours.">
+  <title>Recrutement — EAS 96 · Estuaire d'Armor Simulation</title>
+  <meta name="description" content="Prérequis et procédure de candidature pour rejoindre EAS 96 — Estuaire d'Armor Simulation, serveur FiveM de simulation des services de secours français.">
   <meta name="theme-color" content="#070b24">
 
-  <!-- Aperçu du lien sur Discord / réseaux sociaux (mettre des URL absolues une fois le site en ligne) -->
+  <!-- Aperçu du lien sur Discord / réseaux sociaux -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="EAS 96 Simulation">
-  <meta property="og:title" content="Recrutement — EAS 96 Simulation">
-  <meta property="og:description" content="Prérequis et procédure de candidature pour rejoindre EAS 96 Simulation.">
+  <meta property="og:site_name" content="EAS 96 — Estuaire d'Armor Simulation">
+  <meta property="og:title" content="Recrutement — EAS 96 · Estuaire d'Armor Simulation">
+  <meta property="og:description" content="17 ans minimum, aucune expérience réelle demandée, formation initiale par pôle. Candidatures sur Discord.">
   <meta property="og:url" content="https://morgan-reichert.github.io/eas96-site-vitrine/recrutement.html">
   <meta property="og:image" content="https://morgan-reichert.github.io/eas96-site-vitrine/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/style.css">
   <script>
-    // Bandeau d'annonce déjà fermé : masqué dès le chargement
-    try { if (localStorage.getItem("eas96-announce-closed") === "1") document.documentElement.classList.add("announce-closed"); } catch (e) {}
+    // Préférences mémorisées : bandeau d'annonce fermé, polices Google si l'accord a déjà été donné
+    try {
+      if (localStorage.getItem("eas96-announce-closed") === "1") document.documentElement.classList.add("announce-closed");
+      if (localStorage.getItem("eas96-consent") === "accepted") {
+        var fonts = document.createElement("link");
+        fonts.rel = "stylesheet";
+        fonts.href = "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap";
+        fonts.setAttribute("data-google-fonts", "");
+        document.head.appendChild(fonts);
+      }
+    } catch (e) {}
   </script>
   <script src="js/main.js" defer></script>
 </head>
@@ -51,14 +57,14 @@
        =================================================================== -->
   <header class="site-header theme-dark" data-header>
     <div class="container site-header__inner">
-      <a class="logo" href="index.html" aria-label="EAS 96 Simulation — accueil">
+      <a class="logo" href="index.html" aria-label="EAS 96 — Estuaire d'Armor Simulation, accueil">
         <img class="logo__img" src="assets/img/logo-leger-blanc.png" alt="" width="438" height="128">
       </a>
 
       <nav class="nav" id="nav" data-nav aria-label="Navigation principale">
         <ul class="nav__list">
-          <li><a class="nav__link" href="index.html#principe">Le principe</a></li>
-          <li><a class="nav__link" href="index.html#services">Les services</a></li>
+          <li><a class="nav__link" href="index.html#projet">Le projet</a></li>
+          <li><a class="nav__link" href="index.html#poles">Les pôles</a></li>
           <li><a class="nav__link" href="index.html#attendus">Les attendus</a></li>
           <li><a class="nav__link" href="recrutement.html" aria-current="page">Recrutement</a></li>
           <li><a class="nav__link" href="index.html#faq">FAQ</a></li>
@@ -86,8 +92,8 @@
     <section class="page-hero theme-dark texture-grid texture-glow">
       <div class="container page-hero__content">
         <p class="eyebrow">Recrutement</p>
-        <h1 class="page-hero__title">Rejoindre EAS 96 Simulation</h1>
-        <p class="page-hero__lead">Vérifiez que vous remplissez les prérequis, puis déposez votre candidature en suivant la procédure sur notre Discord.</p>
+        <h1 class="page-hero__title">Rejoindre EAS 96</h1>
+        <p class="page-hero__lead">EAS 96 s'adresse aux joueurs qui cherchent une vraie simulation de secours, et à ceux qui veulent évoluer et prendre des responsabilités.</p>
 
         <ol class="page-hero__nav">
           <li><a href="#prerequis"><span aria-hidden="true">1</span>Les prérequis</a></li>
@@ -104,40 +110,39 @@
         <header class="section__header" data-number="01">
           <p class="eyebrow">Étape 1</p>
           <h2 class="section__title">Les <span class="hl">prérequis</span></h2>
-          <p class="section__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat condimentum velit class aptent taciti.</p>
+          <p class="section__lead">Aucune expérience réelle n'est demandée : l'équipe vous apporte toutes les connaissances nécessaires.</p>
         </header>
 
-        <!-- Exemples : âge minimum, micro, disponibilités, connaissance du règlement… -->
         <ul class="grid grid--3">
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">01</span>
-            <h3 class="requirement__title">Lorem ipsum</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">17 ans minimum</h3>
+            <p class="requirement__text">L'âge minimum est fixé à 17 ans, sans aucune dérogation.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">02</span>
-            <h3 class="requirement__title">Dolor sit amet</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Aucune expérience réelle</h3>
+            <p class="requirement__text">Nul besoin d'être du métier : l'équipe vous apporte toutes les connaissances nécessaires.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">03</span>
-            <h3 class="requirement__title">Consectetur</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Une formation initiale</h3>
+            <p class="requirement__text">Chaque pôle assure sa propre formation initiale.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">04</span>
-            <h3 class="requirement__title">Adipiscing elit</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Investissement et sérieux</h3>
+            <p class="requirement__text">Les qualités indispensables pour faire vivre une simulation réaliste.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">05</span>
-            <h3 class="requirement__title">Sed do eiusmod</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Sens du roleplay et respect</h3>
+            <p class="requirement__text">Respect des autres joueurs et de la chaîne de commandement.</p>
           </li>
           <li class="requirement">
             <span class="requirement__icon" aria-hidden="true">06</span>
-            <h3 class="requirement__title">Tempor incididunt</h3>
-            <p class="requirement__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed nisi.</p>
+            <h3 class="requirement__title">Le bon matériel</h3>
+            <p class="requirement__text">Un PC qui fait tourner GTA V, ou un simple PC pour un poste d'opérateur radio.</p>
           </li>
         </ul>
 
@@ -155,6 +160,7 @@
         <header class="section__header" data-number="02">
           <p class="eyebrow">Étape 2</p>
           <h2 class="section__title">La <span class="hl">candidature</span></h2>
+          <p class="section__lead">Les candidatures sont suivies par pôle, pour que chacun soit bien informé et bien encadré.</p>
         </header>
 
         <!-- À mettre à jour quand le module INTRANET sera en ligne -->
@@ -174,17 +180,17 @@
           <li class="step">
             <span class="step__number" aria-hidden="true">1</span>
             <h3 class="step__title">Rejoindre le Discord</h3>
-            <p class="step__text">Rejoignez le serveur Discord d'EAS 96 Simulation à l'aide du bouton ci-dessous.</p>
+            <p class="step__text">Rejoignez le serveur Discord d'EAS 96 à l'aide du bouton ci-dessous.</p>
           </li>
           <li class="step">
             <span class="step__number" aria-hidden="true">2</span>
             <h3 class="step__title">Suivre les instructions</h3>
-            <p class="step__text">Suivez les instructions de recrutement indiquées sur le Discord pour déposer votre candidature.</p>
+            <p class="step__text">Suivez les instructions de recrutement indiquées sur le Discord pour candidater au pôle de votre choix.</p>
           </li>
           <li class="step">
             <span class="step__number" aria-hidden="true">3</span>
-            <h3 class="step__title">Attendre la réponse</h3>
-            <p class="step__text">L'équipe de recrutement étudie votre candidature et vous recontacte sur Discord.</p>
+            <h3 class="step__title">Intégrer son pôle</h3>
+            <p class="step__text">Votre candidature est suivie par le pôle concerné. Une fois retenu, vous suivez sa formation initiale.</p>
           </li>
         </ol>
 
@@ -203,17 +209,17 @@
   <footer class="site-footer theme-dark">
     <div class="container site-footer__grid">
       <div class="site-footer__brand">
-        <a class="logo logo--footer" href="index.html" aria-label="EAS 96 Simulation — accueil">
+        <a class="logo logo--footer" href="index.html" aria-label="EAS 96 — Estuaire d'Armor Simulation, accueil">
           <img class="logo__img" src="assets/img/logo-complet-blanc.png" alt="" width="640" height="234">
         </a>
-        <p class="site-footer__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+        <p class="site-footer__text">La simulation des services de secours français sur FiveM. Projet personnel, non immatriculé et gratuit.</p>
       </div>
 
       <nav class="site-footer__col" aria-label="Le serveur">
         <h2 class="site-footer__title">Le serveur</h2>
         <ul class="site-footer__list">
-          <li><a href="index.html#principe">Le principe</a></li>
-          <li><a href="index.html#services">Les services</a></li>
+          <li><a href="index.html#projet">Le projet</a></li>
+          <li><a href="index.html#poles">Les pôles</a></li>
           <li><a href="index.html#attendus">Les attendus</a></li>
           <li><a href="recrutement.html">Recrutement</a></li>
         </ul>
@@ -235,14 +241,35 @@
           <li><a href="#" data-link="reglement">Règlement</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="#">Mentions légales</a></li>
+          <li><a href="#" data-consent-open>Préférences de confidentialité</a></li>
         </ul>
       </nav>
     </div>
 
     <div class="container site-footer__bottom">
-      <p>© <span data-year>2026</span> EAS 96 Simulation. Tous droits réservés.</p>
-      <p>Serveur non affilié à Rockstar Games, Take-Two Interactive ou Cfx.re.</p>
+      <p>© <span data-year>2026</span> EAS 96 — Estuaire d'Armor Simulation.</p>
+      <p>Univers fictif · Non affilié à Rockstar Games, Take-Two Interactive ou Cfx.re.</p>
     </div>
   </footer>
+
+  <!-- ===================================================================
+       BANNIÈRE DE CONSENTEMENT (première visite, réouvrable depuis le pied de page)
+       =================================================================== -->
+  <div class="consent theme-dark" data-consent role="dialog" aria-labelledby="consent-title" aria-describedby="consent-text" hidden>
+    <p class="consent__title" id="consent-title">Vos préférences de confidentialité</p>
+    <p class="consent__text" id="consent-text">Ce site n'utilise aucun cookie publicitaire ni outil de suivi. Avec votre accord, il fait appel à deux services tiers : Google Fonts pour les polices et Discord pour afficher le nombre de membres.</p>
+    <details class="consent__details">
+      <summary>En savoir plus</summary>
+      <ul>
+        <li><strong>Google Fonts</strong> : chargement des polices du site depuis les serveurs de Google.</li>
+        <li><strong>Discord</strong> : récupération du nombre de membres et de connectés du serveur.</li>
+        <li><strong>Stockage local</strong> : mémorise votre choix dans votre navigateur, sans cookie.</li>
+      </ul>
+    </details>
+    <div class="consent__actions">
+      <button class="btn btn--light" type="button" data-consent-choice="refused">Refuser</button>
+      <button class="btn btn--light" type="button" data-consent-choice="accepted">Accepter</button>
+    </div>
+  </div>
 </body>
 </html>
