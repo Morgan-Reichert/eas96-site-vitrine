@@ -2325,12 +2325,14 @@ button {
 }
 
 .social__name {
+  display: block;
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: var(--fw-bold);
 }
 
 .social__handle {
+  display: block;
   color: var(--fg-muted);
   font-size: var(--fs-sm);
   word-break: break-word;
@@ -2476,4 +2478,10 @@ button {
   .social-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+.social__icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: currentColor;
 }
