@@ -31,12 +31,31 @@ Les textes reprennent fidèlement la présentation fournie par le client : le pr
 - **Bannière de consentement** à la première visite (voir « Confidentialité »).
 - **Bandeau d'annonce** au-dessus du menu, refermable.
 - **Menu à deux niveaux** : Le serveur, Nous rejoindre et Communauté, chacun avec son sous-menu. Transparent sur la photo, compact au défilement ; le lien de la section visible est surligné.
+- **Connexion à l'intranet** : bouton avec icône à côté de « Postuler », mémorisation proposée au retour et avatar Discord à la place de l'icône (voir « Connexion à l'intranet »).
 - **Page « Nos réseaux »** : les comptes du serveur, les trois dernières vidéos YouTube et le prochain direct Twitch.
 - **Compte à rebours** façon panneau d'affichage (haut de page et appel final).
 - **Chiffres clés** ; membres et connectés du Discord récupérés en direct après accord.
 - **Fiches des pôles** : « Découvrir le pôle » ouvre une fenêtre (le pôle, la formation, pour postuler).
 - **Galerie** filtrable par pôle, visionneuse plein écran (flèches du clavier, balayage sur mobile), carrousel sur mobile.
 - **Apparition des blocs** au défilement, désactivée si l'appareil demande de limiter les animations.
+
+## Connexion à l'intranet
+
+Le site est statique : il n'authentifie personne, la session vit sur l'intranet. Le bouton à icône, à droite de « Postuler », ouvre simplement `CONFIG.links.intranet`.
+
+Pour que le site affiche l'avatar du visiteur, l'intranet doit le renvoyer, après connexion Discord, vers une adresse de la forme :
+
+```
+https://morgan-reichert.github.io/eas96-site-vitrine/?pseudo=LePseudo&avatar=https%3A%2F%2Fcdn.discordapp.com%2Favatars%2F...png
+```
+
+Le site :
+
+- n'accepte que les avatars servis par `https://cdn.discordapp.com/` ;
+- nettoie aussitôt l'adresse affichée dans le navigateur ;
+- propose « Rester connecté sur cet appareil ? » avant toute mémorisation ;
+- conserve alors le pseudo et l'avatar dans le navigateur (clé `eas96-compte`), jamais de jeton ni de session ;
+- permet d'effacer ces informations avec « Oublier cet appareil », dans le menu de l'avatar.
 
 ## Confidentialité
 

@@ -633,6 +633,133 @@ function initSocial() {
 }
 
 /* --------------------------------------------------------------------------
+   Connexion à l'intranet : bouton, mémorisation et avatar Discord
+   --------------------------------------------------------------------------
+   Le site est statique : la session vit sur l'intranet. Au retour, celui-ci
+   peut renvoyer le visiteur avec ?pseudo=…&avatar=https://cdn.discordapp.com/…
+   pour afficher son avatar ici et proposer de le mémoriser.
+   -------------------------------------------------------------------------- */
+function initAccount() {
+  const area = document.querySelector("[data-account]");
+  if (!area) return;
+
+  const CLE = "eas96-compte";
+  const defaut = area.innerHTML;
+  const intranet = CONFIG.links.intranet || "#";
+
+  const lire = () => {
+    try {
+      return JSON.parse(localStorage.getItem(CLE) || "null");
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const memoriser = (compte) => {
+    try {
+      localStorage.setItem(CLE, JSON.stringify(compte));
+    } catch (error) {
+      // stockage indisponible : la mémorisation ne dure que la visite
+    }
+  };
+
+  const oublier = () => {
+    try {
+      localStorage.removeItem(CLE);
+    } catch (error) {
+      // stockage indisponible
+    }
+  };
+
+  const afficher = (compte) => {
+    if (!compte) {
+      area.innerHTML = defaut;
+      return;
+    }
+
+    area.innerHTML =
+      `<button class="btn btn--icon" type="button" data-account-toggle aria-expanded="false" aria-label="Mon compte intranet"><img class="account__avatar" src="` +
+      escapeHtml(compte.avatar) +
+      `" alt="" width="46" height="46" referrerpolicy="no-referrer"></button>` +
+      `<div class="account__menu" data-account-menu hidden><p class="account__name">` +
+      escapeHtml(compte.pseudo) +
+      `</p><p class="account__text">Connecté sur cet appareil.</p>` +
+      `<div class="account__choices"><a class="btn btn--primary" href="` +
+      escapeHtml(intranet) +
+      `">Ouvrir l'intranet</a></div>` +
+      `<button class="account__action" type="button" data-account-forget>Oublier cet appareil</button></div>`;
+  };
+
+  const proposer = (compte) => {
+    const bloc = document.createElement("div");
+    bloc.className = "account__menu";
+    bloc.dataset.accountPrompt = "";
+    bloc.innerHTML =
+      `<p class="account__name">Bonjour ` +
+      escapeHtml(compte.pseudo) +
+      `</p><p class="account__text">Rester connecté sur cet appareil ? Votre pseudo et votre avatar Discord seront mémorisés dans ce navigateur, sans cookie.</p>` +
+      `<div class="account__choices"><button class="btn btn--primary" type="button" data-account-remember>Oui, se souvenir de moi</button>` +
+      `<button class="btn btn--outline" type="button" data-account-skip>Pas maintenant</button></div>`;
+    area.append(bloc);
+  };
+
+  // Retour depuis l'intranet
+  const params = new URLSearchParams(location.search);
+  const pseudo = params.get("pseudo");
+  const avatar = params.get("avatar");
+  let compte = lire();
+
+  if (pseudo && avatar && avatar.startsWith("https://cdn.discordapp.com/")) {
+    compte = { pseudo: pseudo.slice(0, 40), avatar };
+    afficher(compte);
+    proposer(compte);
+
+    params.delete("pseudo");
+    params.delete("avatar");
+    const reste = params.toString();
+    history.replaceState({}, "", location.pathname + (reste ? "?" + reste : "") + location.hash);
+  } else {
+    afficher(compte);
+  }
+
+  area.addEventListener("click", (event) => {
+    const bouton = area.querySelector("[data-account-toggle]");
+    const menu = area.querySelector("[data-account-menu]");
+
+    if (event.target.closest("[data-account-toggle]") && bouton && menu) {
+      const ouvert = bouton.getAttribute("aria-expanded") === "true";
+      bouton.setAttribute("aria-expanded", String(!ouvert));
+      menu.hidden = ouvert;
+      return;
+    }
+
+    if (event.target.closest("[data-account-remember]")) {
+      memoriser(compte);
+      area.querySelector("[data-account-prompt]")?.remove();
+      return;
+    }
+
+    if (event.target.closest("[data-account-skip]")) {
+      area.querySelector("[data-account-prompt]")?.remove();
+      return;
+    }
+
+    if (event.target.closest("[data-account-forget]")) {
+      oublier();
+      compte = null;
+      afficher(null);
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-account]")) return;
+    area.querySelector("[data-account-toggle]")?.setAttribute("aria-expanded", "false");
+    const menu = area.querySelector("[data-account-menu]");
+    if (menu) menu.hidden = true;
+  });
+}
+
+/* --------------------------------------------------------------------------
    Année du pied de page
    -------------------------------------------------------------------------- */
 function initYear() {
@@ -651,6 +778,7 @@ initCountdown();
 initReveal();
 initStats();
 initConsent();
+initAccount();
 initDialogs();
 initGallery();
 initSocial();
