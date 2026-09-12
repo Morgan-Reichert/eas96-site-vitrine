@@ -12,6 +12,8 @@
      5. Bandeau d'annonce     11. Attendus & étapes         17. Animations
      6. En-tête & menu        12. Galerie & visionneuse     18. Menus à deux niveaux
                                                             19. Page « Nos réseaux »
+                                                            20. Connexion intranet
+                                                            21. Page règlement
 
    Points de rupture : 48em (768px) · 60em (960px)
    ========================================================================== */
@@ -2616,4 +2618,182 @@ button {
 
 .account__action:hover {
   color: var(--fg);
+}
+/* 21. Page règlement ====================================================== */
+.rules__state {
+  padding-block: var(--space-2xl);
+  color: var(--fg-muted);
+  text-align: center;
+}
+
+.section__actions--left {
+  align-items: flex-start;
+  margin-top: var(--space-lg);
+  text-align: left;
+}
+
+.rules__meta {
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
+}
+
+.rules__meta strong {
+  color: var(--fg);
+  font-weight: var(--fw-semibold);
+}
+
+/* Bandeau d'une version qui reste à accepter */
+.rules__update {
+  display: grid;
+  gap: var(--space-2xs);
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  background: #fffaf2;
+  border: 1px solid #f3dcb8;
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--radius);
+}
+
+.rules__update .badge {
+  justify-self: start;
+}
+
+.rules__update-text {
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
+}
+
+/* Articles du règlement */
+.rules {
+  display: grid;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+}
+
+.rules__article {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.rules__article + .rules__article {
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border);
+}
+
+.rules__title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+}
+
+.rules__text {
+  color: var(--fg-muted);
+}
+
+.rules__list {
+  display: grid;
+  gap: var(--space-xs);
+  padding: 0;
+  list-style: none;
+  color: var(--fg-muted);
+}
+
+.rules__list li {
+  position: relative;
+  padding-left: 1.15rem;
+}
+
+.rules__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-fg);
+  border-radius: 50%;
+}
+
+/* Acceptation */
+.accept {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+  padding: var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand-blue);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+}
+
+.accept__check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  cursor: pointer;
+}
+
+.accept__check input {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem;
+  accent-color: var(--brand-blue);
+  cursor: pointer;
+}
+
+.accept__actions {
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: start;
+}
+
+.accept__error {
+  color: var(--brand-red);
+  font-size: var(--fs-sm);
+}
+
+/* Règlement déjà accepté */
+.accept--done {
+  align-items: center;
+  border-top-color: #16a34a;
+}
+
+.accept__icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(22, 163, 74, 0.1);
+  color: #15803d;
+  border-radius: 50%;
+}
+
+.accept__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.accept__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+}
+
+.accept__text {
+  margin-top: var(--space-2xs);
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
+}
+
+@media (min-width: 48em) {
+  .accept--done {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--space-md);
+  }
 }

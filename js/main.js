@@ -23,7 +23,9 @@ const CONFIG = {
     // À renseigner : le lien et le bloc correspondants apparaissent dès que l'adresse est remplie
     youtube: "https://www.youtube.com/@EAS-96",
     twitch: "",
-    reglement: "",
+    reglement: "reglement.html",
+    // Règlement en vigueur et acceptation, servis par l'intranet aux seuls visiteurs connectés
+    reglementApi: "https://intranet.eas-96.fr/api/reglement",
   },
 
   // Page « Nos réseaux » : les trois dernières vidéos
@@ -786,6 +788,131 @@ function initAccount() {
 }
 
 /* --------------------------------------------------------------------------
+   Page « Règlement » : lecture puis acceptation
+   --------------------------------------------------------------------------
+   Le texte vient de l'intranet (route /api/reglement), qui ne répond qu'aux
+   visiteurs connectés ; l'acceptation lui est renvoyée par la même route.
+   Le site reste statique : aucune donnée du règlement n'est stockée ici.
+   -------------------------------------------------------------------------- */
+function initReglement() {
+  const zone = document.querySelector("[data-rules]");
+  if (!zone) return;
+
+  const api = CONFIG.links.reglementApi;
+  const etats = {};
+  zone.querySelectorAll("[data-rules-state]").forEach((el) => {
+    etats[el.dataset.rulesState] = el;
+  });
+
+  const montrer = (nom) => {
+    Object.keys(etats).forEach((cle) => {
+      etats[cle].hidden = cle !== nom;
+    });
+  };
+
+  // La connexion se fait sur l'intranet, qui ouvre ensuite sa propre page de règlement
+  const connexion = zone.querySelector("[data-rules-login]");
+  if (connexion) connexion.href = (CONFIG.links.intranet || "#") + "/connexion?suite=%2Freglement";
+
+  if (!api) {
+    montrer("empty");
+    return;
+  }
+
+  const maj = zone.querySelector("[data-rules-update]");
+  const boite = zone.querySelector("[data-rules-accept]");
+  const faite = zone.querySelector("[data-rules-accepted]");
+  const coche = zone.querySelector("[data-rules-checkbox]");
+  const bouton = zone.querySelector("[data-rules-submit]");
+  const erreur = zone.querySelector("[data-rules-submit-error]");
+
+  const enDate = (valeur) => {
+    const date = new Date(valeur);
+    return isNaN(date) ? "" : date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  };
+
+  const enArticles = (sections) =>
+    (sections || [])
+      .map((section) => {
+        const blocs = (section.blocks || [])
+          .map((bloc) =>
+            bloc.kind === "list"
+              ? '<ul class="rules__list">' + bloc.items.map((item) => "<li>" + escapeHtml(item) + "</li>").join("") + "</ul>"
+              : '<p class="rules__text">' + escapeHtml(bloc.text) + "</p>"
+          )
+          .join("");
+        return '<article class="rules__article"><h2 class="rules__title">' + escapeHtml(section.title) + "</h2>" + blocs + "</article>";
+      })
+      .join("");
+
+  const afficher = (donnees) => {
+    zone.querySelector("[data-rules-version]").textContent = donnees.version;
+    zone.querySelector("[data-rules-date]").textContent = enDate(donnees.publieLe);
+    zone.querySelector("[data-rules-articles]").innerHTML = enArticles(donnees.articles);
+
+    // Nouvelle version à accepter : le résumé des changements est mis en avant
+    const note = zone.querySelector("[data-rules-note]");
+    maj.hidden = !(donnees.aAccepter && donnees.accepteLe);
+    note.hidden = !donnees.modifications;
+    note.textContent = donnees.modifications || "";
+
+    boite.hidden = Boolean(donnees.accepte);
+    faite.hidden = !donnees.accepte;
+    if (donnees.accepte && donnees.accepteLe) {
+      zone.querySelector("[data-rules-accepted-text]").textContent =
+        "Votre acceptation a été enregistrée le " + enDate(donnees.accepteLe) + ". Relisez le règlement à chaque mise à jour.";
+    }
+
+    montrer("rules");
+  };
+
+  if (coche && bouton) {
+    coche.addEventListener("change", () => {
+      bouton.disabled = !coche.checked;
+    });
+
+    bouton.addEventListener("click", () => {
+      bouton.disabled = true;
+      erreur.hidden = true;
+
+      fetch(api, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: "{}",
+      })
+        .then((reponse) => (reponse.ok ? reponse.json() : null))
+        .then((donnees) => {
+          if (!donnees || !donnees.ok) throw new Error("acceptation refusée");
+          maj.hidden = true;
+          boite.hidden = true;
+          faite.hidden = false;
+          zone.querySelector("[data-rules-accepted-text]").textContent =
+            "Merci, votre acceptation est enregistrée. Votre espace candidat vous est rendu.";
+          faite.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
+        })
+        .catch(() => {
+          erreur.hidden = false;
+          bouton.disabled = false;
+        });
+    });
+  }
+
+  fetch(api, { credentials: "include" })
+    .then((reponse) => (reponse.ok ? reponse.json() : null))
+    .then((donnees) => {
+      if (!donnees) return montrer("empty");
+      if (!donnees.connecte) return montrer("signed-out");
+      if (!donnees.publie) return montrer("empty");
+      afficher(donnees);
+    })
+    .catch(() => {
+      // intranet injoignable : le règlement reste consultable sur le Discord
+      montrer("empty");
+    });
+}
+
+/* --------------------------------------------------------------------------
    Année du pied de page
    -------------------------------------------------------------------------- */
 function initYear() {
@@ -808,5 +935,6 @@ initAccount();
 initDialogs();
 initGallery();
 initSocial();
+initReglement();
 initHashScroll();
 initYear();
