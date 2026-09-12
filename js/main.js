@@ -19,7 +19,7 @@ const CONFIG = {
     tiktok: "https://www.tiktok.com/@easimulation96",
     facebook: "https://www.facebook.com/profile.php?id=61593349161178",
     // À renseigner : le lien et le bloc correspondants apparaissent dès que l'adresse est remplie
-    youtube: "",
+    youtube: "https://www.youtube.com/@EAS-96",
     twitch: "",
     reglement: "",
   },
@@ -27,7 +27,7 @@ const CONFIG = {
   // Page « Nos réseaux » : les trois dernières vidéos
   youtube: {
     // Mode automatique : identifiant de chaîne (UC…) et clé API YouTube restreinte à votre domaine
-    channelId: "",
+    channelId: "UCB6fe2854SQuDLuTwbEz7WQ",
     apiKey: "",
     // Mode manuel, utilisé si aucune clé n'est renseignée ; vidéo la plus récente en premier
     // { id: "identifiant de la vidéo", title: "Titre", date: "2026-09-14" }
@@ -608,10 +608,13 @@ function initSocial() {
       return;
     }
 
-    fetch("https://www.googleapis.com/youtube/v3/search?key=" + apiKey + "&channelId=" + channelId + "&part=snippet&order=date&type=video&maxResults=3")
+    // Liste des mises en ligne de la chaine : 1 unite de quota par appel, contre 100 pour une recherche
+    const uploads = "UU" + channelId.slice(2);
+
+    fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=" + apiKey + "&playlistId=" + uploads + "&part=snippet&maxResults=3")
       .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
       .then((data) =>
-        render((data.items || []).map((item) => ({ id: item.id.videoId, title: item.snippet.title, date: item.snippet.publishedAt })))
+        render((data.items || []).map((item) => ({ id: item.snippet.resourceId.videoId, title: item.snippet.title, date: item.snippet.publishedAt })))
       )
       .catch(() => {});
   };
