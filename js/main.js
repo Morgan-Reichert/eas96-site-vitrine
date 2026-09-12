@@ -15,6 +15,11 @@ const CONFIG = {
     discord: "https://discord.gg/hyYrn5gmMf",
     // Espace candidat et recruteur (adresse Vercel, à changer si un domaine est branché)
     intranet: "https://eas96-intranet.vercel.app",
+    // Identité du visiteur connecté, exposée par la route /api/moi de l'intranet.
+    // À renseigner avec https://intranet.eas-96.fr/api/moi une fois le sous-domaine en
+    // place : la session n'est partagée que si les deux sites ont le même domaine.
+    // Laissé vide tant que la route n'est pas en ligne, pour ne pas polluer la console.
+    intranetApi: "",
     instagram: "https://www.instagram.com/estuaire_armor_simulation96/",
     tiktok: "https://www.tiktok.com/@easimulation96",
     facebook: "https://www.facebook.com/profile.php?id=61593349161178",
@@ -720,6 +725,33 @@ function initAccount() {
     history.replaceState({}, "", location.pathname + (reste ? "?" + reste : "") + location.hash);
   } else {
     afficher(compte);
+  }
+
+  // Session ouverte sur l'intranet : l'avatar s'affiche sans rien mémoriser ici
+  const api = CONFIG.links.intranetApi;
+  const domaine = (adresse) => adresse.split(".").slice(-2).join(".");
+  const memeDomaine = Boolean(api) && domaine(new URL(api).hostname) === domaine(location.hostname);
+
+  if (api) {
+    fetch(api, { credentials: "include" })
+      .then((reponse) => (reponse.ok ? reponse.json() : null))
+      .then((donnees) => {
+        if (!donnees) return;
+
+        if (donnees.connecte && donnees.avatar) {
+          compte = { pseudo: donnees.pseudo || "Mon compte", avatar: donnees.avatar };
+          afficher(compte);
+          area.querySelector("[data-account-prompt]")?.remove();
+        } else if (memeDomaine && compte) {
+          // Session fermée sur l'intranet : on retire l'avatar mémorisé
+          oublier();
+          compte = null;
+          afficher(null);
+        }
+      })
+      .catch(() => {
+        // intranet injoignable : on garde ce qui est déjà affiché
+      });
   }
 
   area.addEventListener("click", (event) => {

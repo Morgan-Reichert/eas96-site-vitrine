@@ -57,6 +57,8 @@ Le site :
 - conserve alors le pseudo et l'avatar dans le navigateur (clé `eas96-compte`), jamais de jeton ni de session ;
 - permet d'effacer ces informations avec « Oublier cet appareil », dans le menu de l'avatar.
 
+Une fois le domaine en place, site sur `eas-96.fr` et intranet sur `intranet.eas-96.fr`, la session est partagée sans passer par l'adresse : l'intranet expose `/api/moi`, qui renvoie le pseudo et l'avatar du visiteur connecté, jamais de jeton, et le site l'interroge au chargement. Il suffit alors de renseigner `CONFIG.links.intranetApi` avec `https://intranet.eas-96.fr/api/moi`. L'avatar apparaît tout seul et disparaît dès que la session est fermée sur l'intranet.
+
 ## Confidentialité
 
 Le site n'utilise aucun cookie. Les polices Google Fonts, le compteur de membres Discord et les vignettes des vidéos YouTube ne sont chargés qu'après un clic sur « Accepter ». En cas de refus, le site s'affiche avec les polices du système et sans compteur Discord. Le choix est mémorisé dans le navigateur (`eas96-consent`) et peut être modifié via « Préférences de confidentialité » dans le pied de page.
