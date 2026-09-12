@@ -2,7 +2,7 @@
 
 Site statique en HTML, CSS et JS, sans dépendance ni installation. Il suffit d'ouvrir `index.html` dans un navigateur.
 
-**En ligne :** https://morgan-reichert.github.io/eas96-site-vitrine/
+**En ligne :** https://eas-96.fr/
 
 ## Structure
 
@@ -46,7 +46,7 @@ Le site est statique : il n'authentifie personne, la session vit sur l'intranet.
 Pour que le site affiche l'avatar du visiteur, l'intranet doit le renvoyer, après connexion Discord, vers une adresse de la forme :
 
 ```
-https://morgan-reichert.github.io/eas96-site-vitrine/?pseudo=LePseudo&avatar=https%3A%2F%2Fcdn.discordapp.com%2Favatars%2F...png
+https://eas-96.fr/?pseudo=LePseudo&avatar=https%3A%2F%2Fcdn.discordapp.com%2Favatars%2F...png
 ```
 
 Le site :
@@ -103,4 +103,4 @@ Palette issue du logo : bleu nuit, blanc et rouge (le rouge est réservé aux ac
 
 ## Mise en ligne
 
-Le site est publié par GitHub Pages depuis la branche `main` du dépôt `Morgan-Reichert/eas96-site-vitrine`. Chaque envoi (`git push`) republie le site en une minute environ ; le cache de GitHub peut garder l'ancienne version jusqu'à 10 minutes (Ctrl+F5 pour forcer).
+Le site est hébergé par Vercel sur `https://eas-96.fr`, à partir de la branche `main` du dépôt `Morgan-Reichert/eas96-site-vitrine`. Chaque envoi (`git push`) déclenche un déploiement automatique, en une minute environ. `www.eas-96.fr` redirige vers le domaine principal, et l'intranet occupe `intranet.eas-96.fr`.
