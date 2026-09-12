@@ -59,6 +59,17 @@ Le site :
 
 Une fois le domaine en place, site sur `eas-96.fr` et intranet sur `intranet.eas-96.fr`, la session est partagée sans passer par l'adresse : l'intranet expose `/api/moi`, qui renvoie le pseudo et l'avatar du visiteur connecté, jamais de jeton, et le site l'interroge au chargement. Il suffit alors de renseigner `CONFIG.links.intranetApi` avec `https://intranet.eas-96.fr/api/moi`. L'avatar apparaît tout seul et disparaît dès que la session est fermée sur l'intranet.
 
+## Vidéos YouTube
+
+Les trois dernières vidéos sont récupérées par la route `/api/videos` du site, exécutée sur Vercel. La clé API reste donc sur le serveur : elle n'est jamais envoyée au navigateur et n'a besoin d'aucune restriction de domaine.
+
+À renseigner une seule fois dans Vercel, sur le projet du site vitrine, dans Settings puis Environment Variables :
+
+- `YOUTUBE_API_KEY` : la clé API YouTube Data v3 ;
+- `YOUTUBE_CHANNEL_ID` : facultatif, l'identifiant de la chaîne (`UCB6fe2854SQuDLuTwbEz7WQ` par défaut).
+
+Redéployez ensuite le projet. Sans clé, la route renvoie une liste vide et la page affiche « Aucune vidéo pour le moment ». La réponse est gardée en cache quinze minutes, la consommation de quota reste donc négligeable.
+
 ## Confidentialité
 
 Le site n'utilise aucun cookie. Les polices Google Fonts, le compteur de membres Discord et les vignettes des vidéos YouTube ne sont chargés qu'après un clic sur « Accepter ». En cas de refus, le site s'affiche avec les polices du système et sans compteur Discord. Le choix est mémorisé dans le navigateur (`eas96-consent`) et peut être modifié via « Préférences de confidentialité » dans le pied de page.
@@ -71,13 +82,13 @@ Objet `CONFIG` en haut du fichier :
 
 - `launchDate` : lundi 14 septembre 2026 à 20h00 (heure de Paris). Toutes les dates affichées suivent automatiquement.
 - `links` : Discord (https://discord.gg/hyYrn5gmMf), `intranet` (espace candidat et recruteur), Instagram, TikTok, Facebook, et les adresses encore vides (`youtube`, `twitch`, `reglement`). Tous les éléments `data-link="…"` récupèrent ces liens, et **les liens laissés vides sont masqués automatiquement** plutôt que d'afficher un lien mort.
-- `youtube` : deux modes pour les trois dernières vidéos. Automatique avec `channelId` (UC…) et `apiKey` (clé API YouTube gratuite, à restreindre à votre domaine), ou manuel en remplissant `videos` avec les identifiants des vidéos. Sans l'un ni l'autre, la page affiche « Aucune vidéo pour le moment ».
+- `youtube.videos` : à remplir seulement si vous voulez choisir les vidéos affichées. Sinon, le site interroge sa propre route `/api/videos` (voir « Vidéos YouTube »).
 - `twitch.nextStream` : Twitch n'expose pas de calendrier sans serveur, le prochain direct se renseigne donc à la main, par exemple `{ title: "Garde SDIS", startsAt: "2026-09-20T21:00:00+02:00" }`. Une fois la date passée, le bloc repasse automatiquement sur « Aucun direct programmé ».
 
 ### 2. Éléments encore à fournir
 
-- Adresses des chaînes YouTube et Twitch, lien du règlement et page de mentions légales.
-- Pour les vidéos en automatique : identifiant de chaîne YouTube et clé API restreinte au domaine.
+- Adresse de la chaîne Twitch, lien du règlement et page de mentions légales.
+- Clé API YouTube à déposer dans les variables d'environnement Vercel (voir « Vidéos YouTube »).
 - Une capture du centre de traitement des appels pour `service-4.jpg` (actuellement un poste de commandement).
 
 ### 3. Photos : `assets/img/`

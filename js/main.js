@@ -13,13 +13,10 @@ const CONFIG = {
   // Liens appliqués automatiquement à tous les éléments [data-link="clé"]
   links: {
     discord: "https://discord.gg/hyYrn5gmMf",
-    // Espace candidat et recruteur (adresse Vercel, à changer si un domaine est branché)
-    intranet: "https://eas96-intranet.vercel.app",
-    // Identité du visiteur connecté, exposée par la route /api/moi de l'intranet.
-    // À renseigner avec https://intranet.eas-96.fr/api/moi une fois le sous-domaine en
-    // place : la session n'est partagée que si les deux sites ont le même domaine.
-    // Laissé vide tant que la route n'est pas en ligne, pour ne pas polluer la console.
-    intranetApi: "",
+    // Espace candidat et recruteur
+    intranet: "https://intranet.eas-96.fr",
+    // Identité du visiteur connecté, exposée par l'intranet (route /api/moi)
+    intranetApi: "https://intranet.eas-96.fr/api/moi",
     instagram: "https://www.instagram.com/estuaire_armor_simulation96/",
     tiktok: "https://www.tiktok.com/@easimulation96",
     facebook: "https://www.facebook.com/profile.php?id=61593349161178",
@@ -31,9 +28,9 @@ const CONFIG = {
 
   // Page « Nos réseaux » : les trois dernières vidéos
   youtube: {
-    // Mode automatique : identifiant de chaîne (UC…) et clé API YouTube restreinte à votre domaine
-    channelId: "UCB6fe2854SQuDLuTwbEz7WQ",
-    apiKey: "",
+    // Mode automatique : la clé API reste sur le serveur, dans les variables
+    // d'environnement Vercel (YOUTUBE_API_KEY et YOUTUBE_CHANNEL_ID). Le site
+    // interroge sa propre route /api/videos : rien à renseigner ici.
     // Mode manuel, utilisé si aucune clé n'est renseignée ; vidéo la plus récente en premier
     // { id: "identifiant de la vidéo", title: "Titre", date: "2026-09-14" }
     videos: [],
@@ -581,8 +578,7 @@ function initSocial() {
 
   const empty = document.querySelector("[data-youtube-empty]");
   const consentNeeded = document.querySelector("[data-youtube-consent]");
-  const { channelId, apiKey, videos } = CONFIG.youtube;
-  if (!(videos && videos.length) && !(channelId && apiKey)) return;
+  const { videos } = CONFIG.youtube;
 
   const dateLabel = (value) =>
     value ? new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" }).format(new Date(value)) : "";
@@ -613,15 +609,13 @@ function initSocial() {
       return;
     }
 
-    // Liste des mises en ligne de la chaine : 1 unite de quota par appel, contre 100 pour une recherche
-    const uploads = "UU" + channelId.slice(2);
-
-    fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=" + apiKey + "&playlistId=" + uploads + "&part=snippet&maxResults=3")
-      .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
-      .then((data) =>
-        render((data.items || []).map((item) => ({ id: item.snippet.resourceId.videoId, title: item.snippet.title, date: item.snippet.publishedAt })))
-      )
-      .catch(() => {});
+    // Route interne du site : la clé API ne quitte jamais le serveur
+    fetch("/api/videos")
+      .then((reponse) => (reponse.ok ? reponse.json() : null))
+      .then((donnees) => render((donnees && donnees.videos) || []))
+      .catch(() => {
+        // route indisponible : le bloc reste sur son message d'attente
+      });
   };
 
   // Accord déjà donné : initConsent lance le chargement. Sinon, on l'explique au visiteur.
