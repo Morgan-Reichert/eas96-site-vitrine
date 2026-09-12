@@ -15,10 +15,28 @@ const CONFIG = {
     discord: "https://discord.gg/hyYrn5gmMf",
     // Espace candidat et recruteur (adresse Vercel, à changer si un domaine est branché)
     intranet: "https://eas96-intranet.vercel.app",
-    reglement: "#",
-    tiktok: "#",
-    youtube: "#",
-    twitch: "#",
+    instagram: "https://www.instagram.com/estuaire_armor_simulation96/",
+    tiktok: "https://www.tiktok.com/@easimulation96",
+    facebook: "https://www.facebook.com/profile.php?id=61593349161178",
+    // À renseigner : le lien et le bloc correspondants apparaissent dès que l'adresse est remplie
+    youtube: "",
+    twitch: "",
+    reglement: "",
+  },
+
+  // Page « Nos réseaux » : les trois dernières vidéos
+  youtube: {
+    // Mode automatique : identifiant de chaîne (UC…) et clé API YouTube restreinte à votre domaine
+    channelId: "",
+    apiKey: "",
+    // Mode manuel, utilisé si aucune clé n'est renseignée ; vidéo la plus récente en premier
+    // { id: "identifiant de la vidéo", title: "Titre", date: "2026-09-14" }
+    videos: [],
+  },
+
+  // Prochain direct Twitch (Twitch n'a pas d'API publique sans serveur : à renseigner à la main)
+  twitch: {
+    nextStream: null, // { title: "Garde SDIS", startsAt: "2026-09-20T21:00:00+02:00" }
   },
 };
 
@@ -27,8 +45,9 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 // Polices Google (même adresse que dans le script du <head>), chargées après accord
 const GOOGLE_FONTS_URL = "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap";
 
-// Définie par initStats : récupère les membres Discord une fois l'accord donné
+// Définies par initStats et initSocial : déclenchées une fois l'accord donné
 let loadDiscordCounts = () => {};
+let loadSocialFeeds = () => {};
 
 /* --------------------------------------------------------------------------
    Liens
@@ -36,7 +55,12 @@ let loadDiscordCounts = () => {};
 function initLinks() {
   document.querySelectorAll("[data-link]").forEach((link) => {
     const url = CONFIG.links[link.dataset.link];
-    if (!url) return;
+
+    // Adresse non renseignée : on masque l'élément plutôt que de laisser un lien mort
+    if (!url || url === "#") {
+      (link.closest("[data-link-item]") || link).hidden = true;
+      return;
+    }
 
     link.href = url;
     if (/^https?:\/\//.test(url)) {
@@ -115,7 +139,7 @@ function initNav() {
    Lien du menu actif selon la section visible
    -------------------------------------------------------------------------- */
 function initScrollSpy() {
-  const links = [...document.querySelectorAll('.nav__link[href^="#"]')];
+  const links = [...document.querySelectorAll('.nav a[href*="#"]')];
   if (!links.length || !("IntersectionObserver" in window)) return;
 
   const observer = new IntersectionObserver(
@@ -123,7 +147,10 @@ function initScrollSpy() {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         links.forEach((link) => {
-          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+          link.classList.toggle("is-active", link.getAttribute("href").split("#")[1] === entry.target.id);
+        });
+        document.querySelectorAll(".nav__item").forEach((item) => {
+          item.querySelector("[data-menu-toggle]")?.classList.toggle("is-active", !!item.querySelector(".is-active"));
         });
       });
     },
@@ -457,6 +484,7 @@ function initConsent() {
       document.head.append(fonts);
     }
     loadDiscordCounts();
+    loadSocialFeeds();
   };
 
   let stored = null;
@@ -492,6 +520,116 @@ function initConsent() {
 }
 
 /* --------------------------------------------------------------------------
+   Menus à deux niveaux de la barre de navigation
+   -------------------------------------------------------------------------- */
+function initMenus() {
+  const toggles = [...document.querySelectorAll("[data-menu-toggle]")];
+  if (!toggles.length) return;
+
+  const closeAll = (except) => {
+    toggles.forEach((toggle) => {
+      if (toggle !== except) toggle.setAttribute("aria-expanded", "false");
+    });
+  };
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      closeAll(toggle);
+      toggle.setAttribute("aria-expanded", String(!open));
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".nav__item")) closeAll();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeAll();
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Page « Nos réseaux » : dernières vidéos YouTube et prochain direct Twitch
+   -------------------------------------------------------------------------- */
+const escapeHtml = (value) =>
+  String(value).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+function initSocial() {
+  // Prochain direct Twitch : renseigné à la main dans CONFIG
+  const next = CONFIG.twitch.nextStream;
+  const card = document.querySelector("[data-twitch-next]");
+  const start = next && next.startsAt ? new Date(next.startsAt) : null;
+
+  if (card && start && !Number.isNaN(start.getTime()) && start.getTime() > Date.now()) {
+    const zone = { timeZone: "Europe/Paris" };
+    const day = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long", ...zone }).format(start);
+    const hour = new Intl.DateTimeFormat("fr-FR", { hour: "2-digit", minute: "2-digit", ...zone }).format(start).replace(":", "h");
+    card.querySelector("[data-twitch-title]").textContent = next.title || "Direct Twitch";
+    card.querySelector("[data-twitch-date]").textContent = day + " à " + hour;
+    card.hidden = false;
+    document.querySelector("[data-twitch-empty]")?.setAttribute("hidden", "");
+  }
+
+  const list = document.querySelector("[data-youtube-list]");
+  if (!list) return;
+
+  const empty = document.querySelector("[data-youtube-empty]");
+  const consentNeeded = document.querySelector("[data-youtube-consent]");
+  const { channelId, apiKey, videos } = CONFIG.youtube;
+  if (!(videos && videos.length) && !(channelId && apiKey)) return;
+
+  const dateLabel = (value) =>
+    value ? new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" }).format(new Date(value)) : "";
+
+  const render = (items) => {
+    if (!items.length) return;
+    list.innerHTML = items
+      .slice(0, 3)
+      .map(
+        (video) =>
+          '<li class="video"><a class="video__link" href="https://www.youtube.com/watch?v=' + escapeHtml(video.id) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="video__media"><img src="https://i.ytimg.com/vi/' + escapeHtml(video.id) + '/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"></span>' +
+          '<span class="video__title">' + escapeHtml(video.title || "Voir la vidéo") + '</span>' +
+          '<span class="video__date">' + escapeHtml(dateLabel(video.date)) + '</span></a></li>'
+      )
+      .join("");
+    list.hidden = false;
+    empty?.setAttribute("hidden", "");
+    consentNeeded?.setAttribute("hidden", "");
+  };
+
+  // Les vignettes sont servies par YouTube : on attend l'accord du visiteur
+  loadSocialFeeds = () => {
+    consentNeeded?.setAttribute("hidden", "");
+
+    if (videos && videos.length) {
+      render(videos.map((video) => (typeof video === "string" ? { id: video } : video)));
+      return;
+    }
+
+    fetch("https://www.googleapis.com/youtube/v3/search?key=" + apiKey + "&channelId=" + channelId + "&part=snippet&order=date&type=video&maxResults=3")
+      .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
+      .then((data) =>
+        render((data.items || []).map((item) => ({ id: item.id.videoId, title: item.snippet.title, date: item.snippet.publishedAt })))
+      )
+      .catch(() => {});
+  };
+
+  // Accord déjà donné : initConsent lance le chargement. Sinon, on l'explique au visiteur.
+  let stored = null;
+  try {
+    stored = localStorage.getItem("eas96-consent");
+  } catch (error) {
+    // stockage indisponible
+  }
+  if (stored !== "accepted" && consentNeeded) {
+    consentNeeded.hidden = false;
+    empty?.setAttribute("hidden", "");
+  }
+}
+
+/* --------------------------------------------------------------------------
    Année du pied de page
    -------------------------------------------------------------------------- */
 function initYear() {
@@ -504,6 +642,7 @@ initLinks();
 initAnnounce();
 initHeader();
 initNav();
+initMenus();
 initScrollSpy();
 initCountdown();
 initReveal();
@@ -511,5 +650,6 @@ initStats();
 initConsent();
 initDialogs();
 initGallery();
+initSocial();
 initHashScroll();
 initYear();

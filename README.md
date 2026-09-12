@@ -9,6 +9,7 @@ Site statique en HTML, CSS et JS, sans dépendance ni installation. Il suffit d'
 ```
 index.html            Page d'accueil (toutes les sections)
 recrutement.html      Page recrutement : prérequis, puis dépôt de la candidature sur l'intranet
+reseaux.html          Page « Nos réseaux » : comptes, dernières vidéos, prochain direct
 css/variables.css     Thème : couleurs, polices, tailles, espacements
 css/style.css         Mise en page et composants
 js/main.js            Configuration (date, liens) et interactions
@@ -29,7 +30,8 @@ Les textes reprennent fidèlement la présentation fournie par le client : le pr
 
 - **Bannière de consentement** à la première visite (voir « Confidentialité »).
 - **Bandeau d'annonce** au-dessus du menu, refermable.
-- **Menu** transparent sur la photo, compact au défilement ; le lien de la section visible est surligné.
+- **Menu à deux niveaux** : Le serveur, Nous rejoindre et Communauté, chacun avec son sous-menu. Transparent sur la photo, compact au défilement ; le lien de la section visible est surligné.
+- **Page « Nos réseaux »** : les comptes du serveur, les trois dernières vidéos YouTube et le prochain direct Twitch.
 - **Compte à rebours** façon panneau d'affichage (haut de page et appel final).
 - **Chiffres clés** ; membres et connectés du Discord récupérés en direct après accord.
 - **Fiches des pôles** : « Découvrir le pôle » ouvre une fenêtre (le pôle, la formation, pour postuler).
@@ -38,7 +40,7 @@ Les textes reprennent fidèlement la présentation fournie par le client : le pr
 
 ## Confidentialité
 
-Le site n'utilise aucun cookie. Les polices Google Fonts et le compteur de membres Discord ne sont chargés qu'après un clic sur « Accepter ». En cas de refus, le site s'affiche avec les polices du système et sans compteur Discord. Le choix est mémorisé dans le navigateur (`eas96-consent`) et peut être modifié via « Préférences de confidentialité » dans le pied de page.
+Le site n'utilise aucun cookie. Les polices Google Fonts, le compteur de membres Discord et les vignettes des vidéos YouTube ne sont chargés qu'après un clic sur « Accepter ». En cas de refus, le site s'affiche avec les polices du système et sans compteur Discord. Le choix est mémorisé dans le navigateur (`eas96-consent`) et peut être modifié via « Préférences de confidentialité » dans le pied de page.
 
 ## À modifier en priorité
 
@@ -47,11 +49,14 @@ Le site n'utilise aucun cookie. Les polices Google Fonts et le compteur de membr
 Objet `CONFIG` en haut du fichier :
 
 - `launchDate` : lundi 14 septembre 2026 à 20h00 (heure de Paris). Toutes les dates affichées suivent automatiquement.
-- `links` : Discord (https://discord.gg/hyYrn5gmMf), `intranet` (espace candidat et recruteur), règlement et réseaux sociaux. Tous les éléments `data-link="…"` récupèrent ces liens.
+- `links` : Discord (https://discord.gg/hyYrn5gmMf), `intranet` (espace candidat et recruteur), Instagram, TikTok, Facebook, et les adresses encore vides (`youtube`, `twitch`, `reglement`). Tous les éléments `data-link="…"` récupèrent ces liens, et **les liens laissés vides sont masqués automatiquement** plutôt que d'afficher un lien mort.
+- `youtube` : deux modes pour les trois dernières vidéos. Automatique avec `channelId` (UC…) et `apiKey` (clé API YouTube gratuite, à restreindre à votre domaine), ou manuel en remplissant `videos` avec les identifiants des vidéos. Sans l'un ni l'autre, la page affiche « Aucune vidéo pour le moment ».
+- `twitch.nextStream` : Twitch n'expose pas de calendrier sans serveur, le prochain direct se renseigne donc à la main, par exemple `{ title: "Garde SDIS", startsAt: "2026-09-20T21:00:00+02:00" }`. Une fois la date passée, le bloc repasse automatiquement sur « Aucun direct programmé ».
 
 ### 2. Éléments encore à fournir
 
-- Liens du règlement, des réseaux sociaux et page de mentions légales (liens `#`).
+- Adresses des chaînes YouTube et Twitch, lien du règlement et page de mentions légales.
+- Pour les vidéos en automatique : identifiant de chaîne YouTube et clé API restreinte au domaine.
 - Une capture du centre de traitement des appels pour `service-4.jpg` (actuellement un poste de commandement).
 
 ### 3. Photos : `assets/img/`

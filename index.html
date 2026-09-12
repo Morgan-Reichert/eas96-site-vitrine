@@ -63,11 +63,36 @@
 
       <nav class="nav" id="nav" data-nav aria-label="Navigation principale">
         <ul class="nav__list">
-          <li><a class="nav__link" href="#projet">Le projet</a></li>
-          <li><a class="nav__link" href="#poles">Les pôles</a></li>
-          <li><a class="nav__link" href="#attendus">Les attendus</a></li>
-          <li><a class="nav__link" href="#recrutement">Recrutement</a></li>
-          <li><a class="nav__link" href="#faq">FAQ</a></li>
+          <li class="nav__item">
+            <button class="nav__link nav__link--group" type="button" aria-expanded="false" aria-controls="menu-serveur" data-menu-toggle>Le serveur<span class="nav__chevron" aria-hidden="true"></span></button>
+            <ul class="nav__submenu" id="menu-serveur">
+              <li><a href="#projet">Le projet</a></li>
+              <li><a href="#objectif">Notre objectif</a></li>
+              <li><a href="#poles">Les pôles</a></li>
+              <li><a href="#galerie">Galerie</a></li>
+            </ul>
+          </li>
+          <li class="nav__item">
+            <button class="nav__link nav__link--group" type="button" aria-expanded="false" aria-controls="menu-rejoindre" data-menu-toggle>Nous rejoindre<span class="nav__chevron" aria-hidden="true"></span></button>
+            <ul class="nav__submenu" id="menu-rejoindre">
+              <li><a href="#attendus">Les attendus</a></li>
+              <li><a href="#recrutement">Les étapes</a></li>
+              <li><a href="recrutement.html">Déposer sa candidature</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="nav__item">
+            <button class="nav__link nav__link--group" type="button" aria-expanded="false" aria-controls="menu-communaute" data-menu-toggle>Communauté<span class="nav__chevron" aria-hidden="true"></span></button>
+            <ul class="nav__submenu" id="menu-communaute">
+              <li><a href="reseaux.html">Nos réseaux</a></li>
+              <li data-link-item><a href="#" data-link="discord">Discord</a></li>
+              <li data-link-item><a href="#" data-link="instagram">Instagram</a></li>
+              <li data-link-item><a href="#" data-link="tiktok">TikTok</a></li>
+              <li data-link-item><a href="#" data-link="facebook">Facebook</a></li>
+              <li data-link-item><a href="#" data-link="youtube">YouTube</a></li>
+              <li data-link-item><a href="#" data-link="twitch">Twitch</a></li>
+            </ul>
+          </li>
         </ul>
         <div class="nav__actions">
           <a class="btn btn--outline" href="#" data-link="discord">Discord</a>
@@ -648,17 +673,20 @@
       <nav class="site-footer__col" aria-label="Communauté">
         <h2 class="site-footer__title">Communauté</h2>
         <ul class="site-footer__list">
-          <li><a href="#" data-link="discord">Discord</a></li>
-          <li><a href="#" data-link="tiktok">TikTok</a></li>
-          <li><a href="#" data-link="youtube">YouTube</a></li>
-          <li><a href="#" data-link="twitch">Twitch</a></li>
+          <li><a href="reseaux.html">Nos réseaux</a></li>
+          <li data-link-item><a href="#" data-link="discord">Discord</a></li>
+          <li data-link-item><a href="#" data-link="instagram">Instagram</a></li>
+          <li data-link-item><a href="#" data-link="tiktok">TikTok</a></li>
+          <li data-link-item><a href="#" data-link="facebook">Facebook</a></li>
+          <li data-link-item><a href="#" data-link="youtube">YouTube</a></li>
+          <li data-link-item><a href="#" data-link="twitch">Twitch</a></li>
         </ul>
       </nav>
 
       <nav class="site-footer__col" aria-label="Informations">
         <h2 class="site-footer__title">Informations</h2>
         <ul class="site-footer__list">
-          <li><a href="#" data-link="reglement">Règlement</a></li>
+          <li data-link-item><a href="#" data-link="reglement">Règlement</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#">Mentions légales</a></li>
           <li><a href="#" data-consent-open>Préférences de confidentialité</a></li>
@@ -677,12 +705,13 @@
        =================================================================== -->
   <div class="consent theme-dark" data-consent role="dialog" aria-labelledby="consent-title" aria-describedby="consent-text" hidden>
     <p class="consent__title" id="consent-title">Vos préférences de confidentialité</p>
-    <p class="consent__text" id="consent-text">Ce site n'utilise aucun cookie publicitaire ni outil de suivi. Avec votre accord, il fait appel à deux services tiers : Google Fonts pour les polices et Discord pour afficher le nombre de membres.</p>
+    <p class="consent__text" id="consent-text">Ce site n'utilise aucun cookie publicitaire ni outil de suivi. Avec votre accord, il fait appel à des services tiers : Google Fonts pour les polices, Discord pour le nombre de membres et YouTube pour les vignettes des vidéos.</p>
     <details class="consent__details">
       <summary>En savoir plus</summary>
       <ul>
         <li><strong>Google Fonts</strong> : chargement des polices du site depuis les serveurs de Google.</li>
         <li><strong>Discord</strong> : récupération du nombre de membres et de connectés du serveur.</li>
+        <li><strong>YouTube</strong> : vignettes des dernières vidéos sur la page « Nos réseaux ».</li>
         <li><strong>Stockage local</strong> : mémorise votre choix dans votre navigateur, sans cookie.</li>
       </ul>
     </details>

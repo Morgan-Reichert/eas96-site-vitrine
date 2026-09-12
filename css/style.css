@@ -10,7 +10,8 @@
      3. Titres de section      9. Principe / objectif       15. Pied de page
      4. Boutons               10. Services & fiches         16. Page recrutement
      5. Bandeau d'annonce     11. Attendus & étapes         17. Animations
-     6. En-tête & menu        12. Galerie & visionneuse
+     6. En-tête & menu        12. Galerie & visionneuse     18. Menus à deux niveaux
+                                                            19. Page « Nos réseaux »
 
    Points de rupture : 48em (768px) · 60em (960px)
    ========================================================================== */
@@ -2177,5 +2178,302 @@ button {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* 18. Menus à deux niveaux ================================================ */
+.nav__item {
+  position: relative;
+}
+
+.nav__link--group {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  text-align: left;
+}
+
+.nav__chevron {
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  opacity: 0.6;
+  rotate: 45deg;
+  translate: 0 -0.12rem;
+  transition: rotate var(--transition), translate var(--transition);
+}
+
+.nav__link--group[aria-expanded="true"] .nav__chevron {
+  rotate: -135deg;
+  translate: 0 0.12rem;
+}
+
+.nav__submenu {
+  display: grid;
+}
+
+/* Mobile : le sous-menu se déplie sous son intitulé */
+@media (max-width: 59.99em) {
+  .nav__submenu {
+    display: none;
+    margin-left: 2px;
+    padding: var(--space-2xs) 0 var(--space-sm) var(--space-md);
+    border-left: 2px solid var(--border);
+  }
+
+  .nav__link--group[aria-expanded="true"] + .nav__submenu {
+    display: grid;
+  }
+
+  .nav__submenu a {
+    display: block;
+    padding: 0.5rem 0;
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+  }
+
+  .nav__submenu a:hover,
+  .nav__submenu a.is-active {
+    color: var(--fg);
+  }
+}
+
+/* Bureau : sous-menu flottant */
+@media (min-width: 60em) {
+  .nav__submenu {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    left: 50%;
+    z-index: 20;
+    min-width: 13rem;
+    padding: var(--space-xs);
+    background: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    translate: -50% 6px;
+    transition: opacity var(--transition), translate var(--transition), visibility var(--transition);
+  }
+
+  .nav__item:hover .nav__submenu,
+  .nav__item:focus-within .nav__submenu,
+  .nav__link--group[aria-expanded="true"] + .nav__submenu {
+    opacity: 1;
+    visibility: visible;
+    translate: -50% 0;
+  }
+
+  .nav__submenu a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+    white-space: nowrap;
+    transition: background-color var(--transition), color var(--transition);
+  }
+
+  .nav__submenu a:hover,
+  .nav__submenu a.is-active {
+    background: var(--hover-bg);
+    color: var(--fg);
+  }
+}
+
+/* 19. Page « Nos réseaux » ================================================ */
+.social-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.social {
+  --social-color: var(--brand-blue);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.social:hover {
+  border-color: color-mix(in srgb, var(--social-color) 45%, var(--border));
+  transform: translateY(-2px);
+}
+
+.social__mark {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: color-mix(in srgb, var(--social-color) 12%, transparent);
+  color: var(--social-color);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+}
+
+.social__name {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: var(--fw-bold);
+}
+
+.social__handle {
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
+  word-break: break-word;
+}
+
+.social__go {
+  margin-left: auto;
+  color: var(--fg-muted);
+  transition: color var(--transition), transform var(--transition);
+}
+
+.social:hover .social__go {
+  color: var(--fg);
+  transform: translateX(3px);
+}
+
+.social--discord {
+  --social-color: #5865f2;
+}
+
+.social--instagram {
+  --social-color: #c13584;
+}
+
+.social--tiktok {
+  --social-color: #111633;
+}
+
+.social--facebook {
+  --social-color: #1877f2;
+}
+
+.social--youtube {
+  --social-color: #e1000f;
+}
+
+.social--twitch {
+  --social-color: #6441a5;
+}
+
+/* Dernières vidéos */
+.videos {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.video__link {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.video__media {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.video__media img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 450ms ease;
+}
+
+.video__link:hover .video__media img {
+  transform: scale(1.03);
+}
+
+.video__title {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: var(--fw-bold);
+}
+
+.video__date {
+  color: var(--fg-muted);
+  font-size: var(--fs-xs);
+}
+
+/* Prochain direct */
+.stream {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-lg);
+  padding: var(--space-lg) var(--space-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid #6441a5;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+}
+
+.stream__label {
+  color: var(--fg-muted);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.stream__title {
+  margin-top: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+}
+
+.stream__date {
+  margin-top: var(--space-2xs);
+  color: var(--fg-muted);
+}
+
+.stream .btn {
+  margin-left: auto;
+}
+
+.empty-note {
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+
+.empty-note a {
+  color: var(--accent-fg);
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 48em) {
+  .social-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .videos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60em) {
+  .social-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
