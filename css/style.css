@@ -657,7 +657,6 @@ button {
   overflow: hidden;
   background: var(--ink);
   isolation: isolate;
-  text-align: center;
 }
 
 .hero__media {
@@ -679,50 +678,82 @@ button {
   background: var(--overlay-hero);
 }
 
+.hero__inner {
+  display: grid;
+  align-items: end;
+  gap: var(--space-2xl);
+}
+
 .hero__content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.hero .eyebrow,
-.hero__title,
-.hero__lead,
-.hero__note,
-.hero .countdown__label {
-  text-shadow: var(--hero-text-shadow);
+  align-items: flex-start;
+  max-width: 40rem;
 }
 
 .hero .eyebrow {
   color: #ffffff;
 }
 
+/* Bloc du compte à rebours, en verre dépoli sur la photo */
+.hero__panel {
+  width: 100%;
+  padding: var(--space-lg);
+  background: rgba(7, 11, 36, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px) saturate(130%);
+}
+
+.hero__panel.countdown {
+  margin-top: 0;
+}
+
+.hero__panel .countdown__timer {
+  justify-content: space-between;
+}
+
+@media (min-width: 62em) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+    gap: var(--space-3xl);
+  }
+
+  .hero__panel {
+    justify-self: end;
+    max-width: 25rem;
+  }
+}
+
 .hero__title {
   font-size: var(--fs-h1);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
   text-transform: uppercase;
 }
 
 .hero__subtitle {
   display: block;
-  margin-top: var(--space-sm);
-  color: rgba(255, 255, 255, 0.82);
-  font-size: clamp(0.9375rem, 0.7rem + 1vw, 1.5rem);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.875rem, 0.7rem + 0.7vw, 1.25rem);
   font-weight: var(--fw-medium);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
 }
 
 .hero__lead {
-  max-width: 40rem;
+  max-width: 34rem;
   margin-top: var(--space-lg);
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.82);
   font-size: var(--fs-lg);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--space-sm);
   margin-top: var(--space-xl);
 }
@@ -734,7 +765,7 @@ button {
 
 .hero__note {
   margin-top: var(--space-md);
-  color: var(--fg-muted);
+  color: rgba(255, 255, 255, 0.62);
   font-size: var(--fs-xs);
 }
 
@@ -2484,4 +2515,22 @@ button {
   width: 1.35rem;
   height: 1.35rem;
   fill: currentColor;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__panel {
+    animation: rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: 360ms;
+  }
+}
+
+@media (max-width: 47.99em) {
+  .hero {
+    padding-bottom: calc(var(--space-2xl) + 4.5rem);
+  }
+
+  .hero__panel {
+    --flip-height: clamp(3rem, 2rem + 4vw, 4.5rem);
+    padding: var(--space-md);
+  }
 }

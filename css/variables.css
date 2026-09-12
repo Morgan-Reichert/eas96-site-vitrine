@@ -46,7 +46,9 @@
 
   /* ---- Voiles sur les photos --------------------------------------------- */
   /* Plus les valeurs sont basses, plus la photo est visible */
-  --overlay-hero: linear-gradient(180deg, rgba(7, 11, 36, 0.6) 0%, rgba(7, 11, 36, 0.3) 35%, rgba(7, 11, 36, 0.5) 75%, var(--ink) 100%);
+  --overlay-hero:
+    linear-gradient(90deg, rgba(7, 11, 36, 0.88) 0%, rgba(7, 11, 36, 0.62) 45%, rgba(7, 11, 36, 0.18) 100%),
+    linear-gradient(180deg, rgba(7, 11, 36, 0.72) 0%, rgba(7, 11, 36, 0.12) 35%, rgba(7, 11, 36, 0.45) 72%, var(--ink) 100%);
   --overlay-cta: linear-gradient(180deg, rgba(7, 11, 36, 0.84) 0%, rgba(13, 21, 64, 0.9) 100%);
   --hero-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 2px 16px rgba(0, 0, 0, 0.35);
 
