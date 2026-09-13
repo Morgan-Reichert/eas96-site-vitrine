@@ -494,6 +494,23 @@ button {
   height: 88px;
 }
 
+/* Logo d'en-tête et mention de l'auteur */
+.brand {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.brand__credit {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.625rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
 /* Menu — mobile : panneau sous l'en-tête */
 .nav {
   position: absolute;
