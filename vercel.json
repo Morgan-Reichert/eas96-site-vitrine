@@ -1,14 +1,14 @@
 {
   "routes": [
     {
-      "src": "/404-logo.png",
+      "src": "/assets/img/logo-leger-blanc.png",
       "dest": "/assets/img/logo-leger-blanc.png"
     },
     {
       "src": "/(.*)",
-      "dest": "/404.html",
-      "status": 404,
-      "headers": { "Cache-Control": "no-store" }
+      "dest": "/maintenance.html",
+      "status": 503,
+      "headers": { "Cache-Control": "no-store", "Retry-After": "3600" }
     }
   ]
 }

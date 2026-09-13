@@ -56,15 +56,29 @@
     }
     .rule { width: 48px; height: 3px; margin: 16px auto 0; background: #e1000f; border-radius: 2px; }
     .lead { margin: 16px 0 0; color: rgba(255, 255, 255, 0.65); font-size: 0.95rem; line-height: 1.6; }
+    .home {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 10px;
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .home:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.6); }
+    .home:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
   </style>
 </head>
 <body>
   <main>
-    <img class="logo" src="/404-logo.png" alt="EAS 96 — Estuaire d'Armor Simulation" width="438" height="128">
+    <img class="logo" src="/assets/img/logo-leger-blanc.png" alt="EAS 96 — Estuaire d'Armor Simulation" width="438" height="128">
     <p class="code">404</p>
     <h1>Page introuvable</h1>
-    <div class="rule"></div>
+    <div class="rule" aria-hidden="true"></div>
     <p class="lead">La page que vous cherchez n'existe pas ou n'est plus disponible.</p>
+    <a class="home" href="/">Retour à l'accueil</a>
   </main>
 </body>
 </html>

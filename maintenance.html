@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#070b24">
+  <title>Maintenance en cours — EAS 96</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      box-sizing: border-box;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% -10%, rgba(0, 0, 145, 0.45), transparent 70%),
+        radial-gradient(ellipse 60% 45% at 50% 115%, rgba(225, 0, 15, 0.14), transparent 70%),
+        #070b24;
+      color: #ffffff;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Bande tricolore, comme en tête du site */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #000091 0 33.33%, #d5dbea 33.33% 66.66%, #e1000f 66.66% 100%);
+    }
+    main { max-width: 34rem; text-align: center; }
+    .logo { display: block; width: auto; height: 52px; margin: 0 auto 36px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      padding: 6px 14px;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.1);
+      color: #fbbf24;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f59e0b;
+      box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dot { animation: none; }
+    }
+    h1 {
+      margin: 22px 0 0;
+      font-family: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+    .rule { width: 48px; height: 3px; margin: 18px auto 0; background: #e1000f; border-radius: 2px; }
+    .lead { margin: 18px 0 0; color: rgba(255, 255, 255, 0.7); font-size: 1rem; line-height: 1.65; }
+    .discord {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      padding: 14px 24px;
+      border-radius: 10px;
+      background: #5865f2;
+      box-shadow: 0 8px 24px rgba(88, 101, 242, 0.35);
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .discord:hover { background: #4752c4; transform: translateY(-1px); }
+    .discord:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+    .discord svg { width: 22px; height: 22px; }
+    .note { margin: 16px 0 0; color: rgba(255, 255, 255, 0.45); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="/assets/img/logo-leger-blanc.png" alt="EAS 96 — Estuaire d'Armor Simulation" width="438" height="128">
+    <p class="badge"><span class="dot" aria-hidden="true"></span>Maintenance en cours</p>
+    <h1>Site actuellement en maintenance</h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="lead">Le site est temporairement indisponible. Pour toute information, référez-vous au Discord d'EAS 96.</p>
+    <a class="discord" href="https://discord.gg/hyYrn5gmMf" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+      Rejoindre le Discord
+    </a>
+    <p class="note">discord.gg/hyYrn5gmMf</p>
+  </main>
+</body>
+</html>
